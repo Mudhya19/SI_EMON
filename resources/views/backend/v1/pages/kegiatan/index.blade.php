@@ -1,53 +1,55 @@
 @extends('backend.v1.templates.index')
 
 @section('content')
-<div class="card-auto">
-        <div class="card-header">
-            <strong>Data Kegiatan</strong>
-        </div>
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class=" input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Masukan Id Kegiatan atau Nama..." name="keyword">
-                    <div class="input-group-append">
-                <button class="btn btn-primary" type="submit" value="Cari" id="button-search" name="search">Cari !</button>
+<div class="row">
+    <!-- Datatables -->
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan</h6>
+            </div>
+            <div class="table-responsive p-3">
+                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
+                <table class="table align-items-center table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>kode Kegiatan</th>
+                            <th>Nama Kegiatan</th>
+                            <th class="text-nowrap">Indikator</th>
+                            <th class="text-nowrap">Target Fisik</th>
+                            <th>Pagu</th>
+                            <th>Satuan</th>
+                            <th>Otorisasi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($kegiatans as $kegiatan)
+                            <tr>
+                                <th>{{ $kegiatan->kode }}</th>
+                                <td>{{ $kegiatan->nama }}</td>
+                                <td>{{ $kegiatan->indikator }}</td>
+                                <td>{{ $kegiatan->satuan_indikator }}</td>
+                                <td>{{ $kegiatan->pagu }}</td>
+                                <td>{{ $kegiatan->target_satuan }}</td>
+                                <td>{{ $kegiatan->otorisasi }}</td>
+                                <td>
+                                <div class="btn-group">
+                                <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                &nbsp;
+                                <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST" class="">
+                                @csrf
+                                @method("DELETE")
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah kamu yakin data di hapus?')">
+                                    Hapus</button>
+                            </form>
+                            </div>
+                            </td>
+                            </tr>
+                        @endforeach
+                </table>
             </div>
         </div>
-    </form>
-    <!-- <div class="col-md-12"> -->
-        <a href={{route('kegiatan.create')}}  }} class="btn btn-primary mb-2">Tambah Data</a>
-        <a href="" target="_blank" class="btn btn-success mb-2">Cetak Data</a>
-            <div class="table-responsive">
-        <table class="table table-sm table-bordered table-hover m-0">
-            <thead>
-                <tr>
-                    <th>kode</th>
-                    <th>Nama</th>
-                    <th>Indikator</th>
-                    <th>Satuan Indikator</th>
-                    <th>Pagu</th>
-                    <th>Satuan Target</th>
-                    <th>Otorisasi</th>
-                </tr>
-            </thead>
-                <tbody>
-                <tr>
-                    <th>012121</th>
-                    <th>f wwefdsdosdom</th>
-                    <th>Tfffff</th>
-                    <th>Iifhishf</th>
-                    <th>fjffj</th>
-                    <th>fjdjdj</th>
-                    <th>fjdjdj</th>
-                </tr>
-                </tbody>
-        </table>
-            </div>
-            <p></p>
-        <nav class="mb-5">
-            <ul class="pagination justify-content-end">
-            </ul>
-        </nav>
     </div>
 </div>
 @endsection

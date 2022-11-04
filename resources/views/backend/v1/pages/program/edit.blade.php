@@ -24,13 +24,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" name="kode" id="kode" value="{{ $program->kode }}">
+                        <input type="text" class="form-control" name="kode" id="kode" value="{{ $program->kode }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" id="nama" value="{{ $program->nama }}">
+                        <input type="text" class="form-control" name="nama" id="nama" value="{{ $program->nama }}" required>
                     </div>
                 </div>
             </div>
@@ -38,19 +38,19 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="tahun">Tahun</label>
-                        <input type="text" class="form-control" name="tahun" id="tahun" value="{{ $program->tahun }}">
+                        <input type="text" class="form-control" name="tahun" id="tahun" value="{{ $program->tahun }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $program->indikator }}">
+                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $program->indikator }}" required>
                     </div>
                 </div>
             <div class="col-md-6">
                     <div class="form-group">
                         <label for="satuan_indkator">Satuan Indikator</label>
-                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" value="{{ $program->satuan_indikator }}">
+                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" value="{{ $program->satuan_indikator }}" required>
                     </div>
                 </div>
             </div>
@@ -58,13 +58,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagu">pagu</label>
-                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $program->pagu }}">
+                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $program->pagu }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" value="{{ $program->target_satuan }}">
+                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" value="{{ $program->target_satuan }}" required>
                     </div>
                 </div>
             </div>

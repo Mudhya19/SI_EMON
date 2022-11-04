@@ -15,17 +15,17 @@
         <!-- Topbar -->
 
         <div class="container-fluid" id="container-wrapper">
-        <!-- Container Fluid-->
-      @yield('content')
-        <!---Container Fluid-->
+          <!-- Container Fluid-->
+          @yield('content')
+          <!---Container Fluid-->
         </div>
         {{-- footer --}}
       </div>
       @include('backend.v1.templates.inc.footer')
-        {{-- footer --}}
+      {{-- footer --}}
     </div>
   </div>
-@include('backend.v1.templates.inc.script')
+  @include('backend.v1.templates.inc.script')
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>

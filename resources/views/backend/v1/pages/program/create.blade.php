@@ -23,13 +23,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kode">Kode</label>
-                        <input type="text" class="form-control" name="kode" id="kode">
+                        <input type="text" class="form-control" name="kode" id="kode" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" id="nama">
+                        <input type="text" class="form-control" name="nama" id="nama" required>
                     </div>
                 </div>
             </div>
@@ -37,19 +37,19 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="tahun">Tahun</label>
-                        <input type="text" class="form-control" name="tahun" id="tahun">
+                        <input type="text" class="form-control" name="tahun" id="tahun" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator">
+                        <input type="text" class="form-control" name="indikator" id="indikator" required>
                     </div>
                 </div>
             <div class="col-md-6">
                     <div class="form-group">
                         <label for="satuan_indkator">Satuan Indikator</label>
-                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator">
+                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" required>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagu">pagu</label>
-                        <input type="text" class="form-control" name="pagu" id="pagu">
+                        <input type="text" class="form-control" name="pagu" id="pagu" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan">
+                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" required>
                     </div>
                 </div>
             </div>

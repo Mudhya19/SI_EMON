@@ -54,7 +54,7 @@ class ProgramController extends Controller
         $data['user_id'] = Auth::user()->id;
         Program::create($data);
         
-        return redirect()->route('program.index')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->route('program.index')->with('success', 'Data program berhasil ditambahkan.');
     }
 
     /**
@@ -103,7 +103,7 @@ class ProgramController extends Controller
         $data['user_id'] = Auth::user()->id;
         $program->update($data);
 
-        return to_route('program.index')->with('success', 'Program berhasil di perbarui');
+        return to_route('program.index')->with('success', ' Data program berhasil di perbarui');
     }
 
     /**
@@ -115,6 +115,6 @@ class ProgramController extends Controller
     public function destroy(Program $program)
     {
         $program->delete();
-        return to_route('program.index')->with('success', 'Program berhasil di hapus');
+        return to_route('program.index')->with('success', 'Data program berhasil di hapus');
     }
 }
