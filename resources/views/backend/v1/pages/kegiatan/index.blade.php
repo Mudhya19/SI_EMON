@@ -13,7 +13,8 @@
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th>kode Kegiatan</th>
+                            <th>Program</th>
+                            <th>Kode Kegiatan</th>
                             <th>Nama Kegiatan</th>
                             <th class="text-nowrap">Indikator</th>
                             <th class="text-nowrap">Target Fisik</th>
@@ -26,6 +27,7 @@
                     <tbody>
                         @foreach ($kegiatans as $kegiatan)
                             <tr>
+                                <th>{{ $kegiatan->program->kode .' - '. $kegiatan->program->nama }}</th>
                                 <th>{{ $kegiatan->kode }}</th>
                                 <td>{{ $kegiatan->nama }}</td>
                                 <td>{{ $kegiatan->indikator }}</td>

@@ -20,16 +20,25 @@
         <form action="{{ route('kegiatan.update', $kegiatan) }}" method="POST">
             @csrf
             @method('patch')
+            <div class="form-group">
+                <label for="select2SinglePlaceholder">Program</label>
+                <select class="select2-single-placeholder form-control" name="program_id" id="select2SinglePlaceholder" required>
+                    <option value="">---Pilih satu ID Program---</option>
+                    @foreach ($programs as $program)
+                    <option value="{{ $program->id }}" {{ ($kegiatan->program_id == $program->id) ? 'selected' : '' }}>{{ $program->kode.' - '.$program->nama}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="kode">Kode</label>
+                        <label for="kode">Kode kegiatan</label>
                         <input type="text" class="form-control" name="kode" id="kode" value="{{ $kegiatan->kode }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nama">Nama</label>
+                        <label for="nama">Nama kegiatan</label>
                         <input type="text" class="form-control" name="nama" id="nama" value="{{ $kegiatan->nama }}" required>
                     </div>
                 </div>

@@ -41,7 +41,6 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'program_id ' => 'required',
             'kode' => 'required',
             'nama' => 'required',
             'indikator' => 'required',
@@ -50,7 +49,7 @@ class KegiatanController extends Controller
             'target_satuan' => 'required',
             'otorisasi' => 'required',
         ]);
-
+        
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         Kegiatan::create($data);
@@ -77,7 +76,7 @@ class KegiatanController extends Controller
      */
     public function edit(Kegiatan $kegiatan)
     {
-        $data['kegiatans'] = $kegiatan;
+        $data['kegiatan'] = $kegiatan;
         $data['programs'] = Program::all();
         return view('backend.v1.pages.kegiatan.edit', $data);
     }
@@ -92,7 +91,6 @@ class KegiatanController extends Controller
     public function update(Request $request, Kegiatan $kegiatan)
     {
         $request->validate([
-            'program_id' => 'required',
             'kode' => 'required',
             'nama' => 'required',
             'indikator' => 'required',

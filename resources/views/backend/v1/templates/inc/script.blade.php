@@ -16,7 +16,6 @@
   $(document).ready(function () {
       // Select2 Single with Placeholder
       $('.select2-single-placeholder').select2({
-      placeholder: "Select a Province",
       allowClear: true
       });
       $('#dataTable').DataTable(); // ID From dataTable 

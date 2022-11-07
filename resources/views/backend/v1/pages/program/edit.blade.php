@@ -23,13 +23,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="kode">Kode</label>
+                        <label for="kode">Kode program</label>
                         <input type="text" class="form-control" name="kode" id="kode" value="{{ $program->kode }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nama">Nama</label>
+                        <label for="nama">Nama program </label>
                         <input type="text" class="form-control" name="nama" id="nama" value="{{ $program->nama }}" required>
                     </div>
                 </div>
