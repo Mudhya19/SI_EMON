@@ -6,8 +6,8 @@
 <script src="{{ url('templates/backend')}}/js/demo/chart-area-demo.js"></script>
 <!-- Select2 -->
 <script src="{{ url('templates/backend')}}/vendor/select2/dist/js/select2.min.js"></script>
-<!-- Bootstrap DatePicker -->  
-<link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" >
+<!-- Bootstrap Datepicker -->
+<script src="{{ url('templates/backend')}}/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <!-- Page level plugins -->
 <script src="{{ url('templates/backend') }}/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ url('templates/backend') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
@@ -21,5 +21,12 @@
       });
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+
+      $('#simple-date1 .input-group.date').datepicker({
+        format: 'dd/mm/yyyy',
+        todayBtn: 'linked',
+        todayHighlight: true,
+        autoclose: true,        
+      });
     });
 </script>

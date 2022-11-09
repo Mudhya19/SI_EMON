@@ -13,4 +13,6 @@
   <link href="{{ url('templates/backend')}}/vendor/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
   {{-- datatable --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+  <!-- Bootstrap DatePicker -->  
+  <link href="{{ url('templates/backend') }}/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" >
 </head>
