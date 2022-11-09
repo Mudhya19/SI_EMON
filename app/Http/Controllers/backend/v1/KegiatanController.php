@@ -54,7 +54,7 @@ class KegiatanController extends Controller
         $data['user_id'] = Auth::user()->id;
         Kegiatan::create($data);
 
-        return redirect()->route('kegiatan.index')->with('success', 'Data program berhasil ditambahkan.');
+        return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil di tambahkan');
     }
 
     /**
@@ -116,6 +116,6 @@ class KegiatanController extends Controller
     public function destroy(Kegiatan $kegiatan)
     {
         $kegiatan->delete();
-        return to_route('kegiatan.index')->with('success', 'Data program berhasil di hapus');
+        return to_route('kegiatan.index')->with('success', 'Data Kegiatan berhasil di hapus');
     }
 }

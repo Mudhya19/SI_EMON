@@ -6,7 +6,8 @@
 <script src="{{ url('templates/backend')}}/js/demo/chart-area-demo.js"></script>
 <!-- Select2 -->
 <script src="{{ url('templates/backend')}}/vendor/select2/dist/js/select2.min.js"></script>
-
+<!-- Bootstrap DatePicker -->  
+<link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" >
 <!-- Page level plugins -->
 <script src="{{ url('templates/backend') }}/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ url('templates/backend') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>

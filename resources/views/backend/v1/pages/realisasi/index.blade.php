@@ -6,40 +6,35 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Realisasi</h6>
             </div>
             <div class="table-responsive p-3">
-                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
+                <a href="{{ route('realisasi.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th>Realisasi</th>
-                            <th>Kode </th>
-                            <th>Nama Kegiatan</th>
-                            <th class="text-nowrap">Indikator</th>
-                            <th class="text-nowrap">Target Fisik</th>
+                            <th>Nama Realisasi</th>
+                            <th class="text-nowrap">Tanggal</th>
+                            <th class="text-nowrap">Triwulan</th>
                             <th>Pagu</th>
                             <th>Satuan</th>
-                            <th>Otorisasi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kegiatans as $kegiatan)
+                        @foreach ($realisasis as $realisasi)
                             <tr>
-                                <th>{{ $kegiatan->program->kode .' - '. $kegiatan->program->nama }}</th>
-                                <th>{{ $kegiatan->kode }}</th>
-                                <td>{{ $kegiatan->nama }}</td>
-                                <td>{{ $kegiatan->indikator }}</td>
-                                <td>{{ $kegiatan->satuan_indikator }}</td>
-                                <td>{{ $kegiatan->pagu }}</td>
-                                <td>{{ $kegiatan->target_satuan }}</td>
-                                <td>{{ $kegiatan->otorisasi }}</td>
+                                <th>{{ $realisasi->kegiatan->kode .' - '. $realisasi->kegiatan->nama }}</th>
+                                <td>{{ $realisasi->nama }}</td>
+                                <td>{{ $realisasi->tanggal }}</td>
+                                <td>{{ $realisasi->triwulan}}</td>
+                                <td>{{ $realisasi->pagu }}</td>
+                                <td>{{ $realisasi->target_satuan }}</td>
                                 <td>
                                 <div class="btn-group">
-                                <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{route('realisasi.edit', $realisasi->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 &nbsp;
-                                <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST" class="">
+                                <form action="{{ route('realisasi.destroy', $realisasi->id) }}" method="POST" class="">
                                 @csrf
                                 @method("DELETE")
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah kamu yakin data di hapus?')">
