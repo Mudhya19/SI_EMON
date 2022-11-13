@@ -20,7 +20,7 @@
             @csrf
             <div class="form-group">
                 <label for="select2SinglePlaceholder">Kegiatan</label>
-                <select class="select2-single-placeholder form-control" name=kegiatan_id" id="select2SinglePlaceholder" required>
+                <select class="select2-single-placeholder form-control" name="kegiatan_id" id="select2SinglePlaceholder" required>
                     <option value="">---Pilih satu ID Kegiatan---</option>
                     @foreach ($kegiatans as $kegiatan)
                     <option value="{{ $kegiatan->id }}">{{ $kegiatan->kode.' - '.$kegiatan->nama}}</option>
@@ -41,7 +41,7 @@
                                 <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             </div>
-                        <input type="text" class="form-control" value="01/06/2020" id="simpleDataInput">
+                        <input type="text" name="tanggal" class="form-control" id="simpleDataInput">
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <input type="submit" name="submit" class="btn btn-success" value="Simpan">
-            <a href="{{route('kegiatan.index')}}" class="btn btn-warning">Kembali</a>
+            <a href="{{route('realisasi.index')}}" class="btn btn-warning">Kembali</a>
         </form>
     </div>
 </div>

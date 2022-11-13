@@ -23,7 +23,7 @@
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
 
       $('#simple-date1 .input-group.date').datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'yyyy/mm/dd',
         todayBtn: 'linked',
         todayHighlight: true,
         autoclose: true,        

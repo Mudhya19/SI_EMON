@@ -13,6 +13,7 @@
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
+                            <th>Kode Kegiatan</th>
                             <th>Nama Realisasi</th>
                             <th class="text-nowrap">Tanggal</th>
                             <th class="text-nowrap">Triwulan</th>

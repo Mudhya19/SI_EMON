@@ -19,12 +19,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{route('kegiatan.index')}}">
           <i class="fas fa-fw fa-table"></i>
-          <span>kegiatan</span></a>
+          <span>Kegiatan</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{route('realisasi.index')}}">
           <i class="fas fa-fw fa-table"></i>
-          <span>realisasi</span></a>
+          <span>Realisasi</span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
