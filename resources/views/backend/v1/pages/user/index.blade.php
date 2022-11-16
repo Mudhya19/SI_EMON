@@ -6,13 +6,14 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data pengguna</h6>
             </div>
             <div class="table-responsive p-3">
                 <a href="{{ route('user.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
+                            <th>No</th>
                             <th>Nama user</th>
                             <th>Nip</th>
                             <th class="text-nowrap">Rule</th>
@@ -25,6 +26,7 @@
                         @foreach ($users as $user) 
                             <tr>
                                 {{-- <th>{{ $user->kegiatan->kode .' - '. $user->kegiatan->nama }}</th> --}}
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->nip }}</td>
                                 <td>{{ $user->rule}}</td>

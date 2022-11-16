@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tahun');
             $table->string('indikator');
-            $table->string('satuan_indikator');
+            $table->string('target');
+            $table->string('satuan');
             $table->string('pagu');
-            $table->string('target_satuan');
             $table->timestamps();
         });
     }

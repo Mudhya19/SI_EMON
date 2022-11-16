@@ -44,10 +44,9 @@ class KegiatanController extends Controller
             'kode' => 'required',
             'nama' => 'required',
             'indikator' => 'required',
-            'satuan_indikator' => 'required',
+            'target' => 'required',
+            'satuan' => 'required',
             'pagu' => 'required',
-            'target_satuan' => 'required',
-            'otorisasi' => 'required',
         ]);
         
         $data = $request->all();
@@ -94,10 +93,9 @@ class KegiatanController extends Controller
             'kode' => 'required',
             'nama' => 'required',
             'indikator' => 'required',
-            'satuan_indikator' => 'required',
+            'target' =>'required',
+            'satuan' => 'required',
             'pagu' => 'required',
-            'target_satuan' => 'required',
-            'otorisasi' => 'required',
         ]);
 
         $data = $request->all();

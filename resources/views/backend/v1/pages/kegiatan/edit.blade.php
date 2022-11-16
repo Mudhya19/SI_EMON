@@ -30,16 +30,30 @@
                 </select>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="kode">Kode kegiatan</label>
                         <input type="text" class="form-control" name="kode" id="kode" value="{{ $kegiatan->kode }}" required>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama kegiatan</label>
                         <input type="text" class="form-control" name="nama" id="nama" value="{{ $kegiatan->nama }}" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" value="{{ $kegiatan->satuan }}" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" value="{{ $kegiatan->target }}" required>
                     </div>
                 </div>
             </div>
@@ -47,33 +61,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $kegiatan->indikator }}" required>
+                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $kegiatan->indikator }}"required>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="satuan_indikator">Satuan Indikator</label>
-                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" value="{{ $kegiatan->satuan_indikator }}" required>
-                    </div>
-                </div>
-            <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagu">Pagu</label>
                         <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $kegiatan->pagu }}" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="otorisasi">Otorisasi</label>
-                        <input type="text" class="form-control" name="otorisasi" id="otorisasi" value="{{ $kegiatan->otorisasi }}" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" value="{{ $kegiatan->target_satuan }}" required>
                     </div>
                 </div>
             </div>

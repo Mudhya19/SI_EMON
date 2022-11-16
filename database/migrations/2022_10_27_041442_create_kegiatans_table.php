@@ -20,10 +20,9 @@ return new class extends Migration
             $table->string('kode');
             $table->string('nama');
             $table->string('indikator');
-            $table->string('satuan_indikator');
+            $table->string('target');
+            $table->string('satuan');
             $table->string('pagu');
-            $table->string('target_satuan');
-            $table->string('otorisasi');
             $table->timestamps();
         });
     }

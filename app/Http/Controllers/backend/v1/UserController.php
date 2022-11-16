@@ -48,9 +48,9 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-        $data['id'] = Auth::user()->id;
+        $data['password'] = bcrypt($request->password);
         User::create($data);
-        
+    
         return redirect()->route('user.index')->with('success', 'Data User berhasil ditambahkan.');
     }
 
@@ -96,8 +96,8 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-        $data['id'] = Auth::user()->id;
-        User::update($data);
+        $data['password'] = bcrypt($request->password);
+        $user->update($data);
         
         return to_route('user.index')->with('success', 'Data User berhasil di perbaharui.');
     }

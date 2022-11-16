@@ -13,24 +13,27 @@
 @endif
 <div class="card">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Tambah Data User</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tambah Data pengguna</h6>
         {{-- <a href="{{ route('user.index') }}" class="btn btn-primary mt-4">Data Mahasiswa</a> --}}
     </div>
     <div class="card-body">
-        <form action="{{ route('user.store') }}" method="POST">
+        <form action="{{ route('user.update', $user) }}" method="POST">
             @csrf
             @method('patch')
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nama">Nama User</label>
+                        <label for="nama">Nama pengguna</label>
                         <input type="text" class="form-control" name="nama" id="nama" value="{{ $user->nama }}"  required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
-                        <input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ $user->jabatan }}" required>
+                        <label for="selectSinglePlaceholder">Jabatan</label>
+                        <select class="select-single-placeholder form-control" name="jabatan" id="selectSinglePlaceholder" value="{{ $user->jabatan }}" required>
+                            <option value="kadis">Kadis</option>
+                            <option value="kabid">Kabid</option>
+                        </select>
                     </div>
                 </div>
             </div>

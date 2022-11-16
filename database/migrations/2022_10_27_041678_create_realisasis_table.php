@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('nama');
             $table->date('tanggal');
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
+            $table->string('target');
+            $table->string('satuan');
             $table->string('pagu');
-            $table->string('target_satuan');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

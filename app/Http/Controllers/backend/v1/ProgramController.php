@@ -48,6 +48,7 @@ class ProgramController extends Controller
             'satuan_indikator' => 'required',
             'pagu' => 'required',
             'target_satuan' => 'required',
+            'user_id' => 'required',
         ]);
         
         $data = $request->all();
@@ -97,10 +98,10 @@ class ProgramController extends Controller
             'satuan_indikator' => 'required',
             'pagu' => 'required',
             'target_satuan' => 'required',
+            'user_id' => 'required',
         ]);
 
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
         $program->update($data);
 
         return to_route('program.index')->with('success', ' Data program berhasil di perbarui');

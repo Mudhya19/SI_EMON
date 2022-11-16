@@ -13,28 +13,28 @@
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th>Program</th>
+                            <th class="">No</th>
+                            <th>Kode Program</th>
                             <th>Kode Kegiatan</th>
                             <th>Nama Kegiatan</th>
                             <th class="text-nowrap">Indikator</th>
-                            <th class="text-nowrap">Target Fisik</th>
+                            <th class="text-nowrap">Target</th>
                             <th>Pagu</th>
                             <th>Satuan</th>
-                            <th>Otorisasi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($kegiatans as $kegiatan)
                             <tr>
+                                <td>{{ $loop->iteration }}.</td>
                                 <th>{{ $kegiatan->program->kode .' - '. $kegiatan->program->nama }}</th>
                                 <th>{{ $kegiatan->kode }}</th>
                                 <td>{{ $kegiatan->nama }}</td>
                                 <td>{{ $kegiatan->indikator }}</td>
-                                <td>{{ $kegiatan->satuan_indikator }}</td>
+                                <td>{{ $kegiatan->target }}</td>
+                                <td>{{ $kegiatan->satuan }}</td>
                                 <td>{{ $kegiatan->pagu }}</td>
-                                <td>{{ $kegiatan->target_satuan }}</td>
-                                <td>{{ $kegiatan->otorisasi }}</td>
                                 <td>
                                 <div class="btn-group">
                                 <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm">Edit</a>
