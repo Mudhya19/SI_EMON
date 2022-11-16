@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
 <img src="{{ url('templates/backend')}}/img/logo/logo.png">
         </div>
-        <div class="sidebar-brand-text mx-3">SI-EMON</div>
+        <div class="sidebar-brand-text mx-4">SI-EMON</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -11,9 +11,10 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+      <hr class="sidebar-divider">
       <li class="nav-item active">
         <a class="nav-link" href="{{route('program.index')}}">
-          <i class="fas fa-fw fa-table"></i>
+          <i class="fas fa-tablet-alt"></i>
           <span>Program</span></a>
       </li>
       <li class="nav-item active">
@@ -23,8 +24,13 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{route('realisasi.index')}}">
-          <i class="fas fa-fw fa-table"></i>
+          <i class="fas fa-scroll"></i>
           <span>Realisasi</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('user.index')}}">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>User</span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">

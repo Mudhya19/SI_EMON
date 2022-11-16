@@ -49,8 +49,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="select2SinglePlaceholder">Triwulan</label>
-                        <select class="select2-single-placeholder form-control" name="triwulan" id="select2SinglePlaceholder" required>
+                        <label for="selectSinglePlaceholder">Triwulan</label>
+                        <select class="select-single-placeholder form-control" name="triwulan" id="selectSinglePlaceholder" required>
                             <option value="I">Triwulan I</option>
                             <option value="II">Triwulan II</option>
                             <option value="III">Triwulan III</option>

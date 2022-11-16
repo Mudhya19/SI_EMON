@@ -75,7 +75,7 @@ class RealisasiController extends Controller
     {
         $data['realisasi'] = $realisasi;
         $data['kegiatans'] = Kegiatan::all();
-        return view('backend.v1.pages.realiasi.edit', $data);
+        return view('backend.v1.pages.realisasi.edit', $data);
     }
 
     /**
@@ -94,6 +94,7 @@ class RealisasiController extends Controller
             'pagu' => 'required',
             'target_satuan' => 'required', 
         ]);
+        
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $realisasi->update($data);
