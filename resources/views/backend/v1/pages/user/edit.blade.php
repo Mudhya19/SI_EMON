@@ -33,6 +33,7 @@
                         <select class="select-single-placeholder form-control" name="jabatan" id="selectSinglePlaceholder" value="{{ $user->jabatan }}" required>
                             <option value="kadis">Kadis</option>
                             <option value="kabid">Kabid</option>
+                            <option value="admin">Admin</option>
                         </select>
                     </div>
                 </div>

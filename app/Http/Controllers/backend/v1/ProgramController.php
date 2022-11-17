@@ -45,10 +45,9 @@ class ProgramController extends Controller
             'nama' => 'required',
             'tahun' => 'required',
             'indikator' => 'required',
-            'satuan_indikator' => 'required',
+            'target' => 'required',
+            'satuan' => 'required',
             'pagu' => 'required',
-            'target_satuan' => 'required',
-            'user_id' => 'required',
         ]);
         
         $data = $request->all();
@@ -95,15 +94,14 @@ class ProgramController extends Controller
             'nama' => 'required',
             'tahun' => 'required',
             'indikator' => 'required',
-            'satuan_indikator' => 'required',
+            'target' => 'required',
+            'satuan' => 'required',
             'pagu' => 'required',
-            'target_satuan' => 'required',
-            'user_id' => 'required',
         ]);
 
         $data = $request->all();
         $program->update($data);
-
+        
         return to_route('program.index')->with('success', ' Data program berhasil di perbarui');
     }
 

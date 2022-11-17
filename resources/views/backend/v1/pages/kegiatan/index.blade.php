@@ -9,21 +9,34 @@
                 <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan</h6>
             </div>
             <div class="table-responsive p-3">
-                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
+                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
-                            <th class="">No</th>
+                            <th>No</th>
                             <th>Kode Program</th>
                             <th>Kode Kegiatan</th>
                             <th>Nama Kegiatan</th>
-                            <th class="text-nowrap">Indikator</th>
-                            <th class="text-nowrap">Target</th>
+                            <th>Indikator</th>
+                            <th>Target</th>
                             <th>Pagu</th>
                             <th>Satuan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>Kode Program</th>
+                            <th>Kode Kegiatan</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Indikator</th>
+                            <th>Target</th>
+                            <th>Pagu</th>
+                            <th>Satuan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         @foreach ($kegiatans as $kegiatan)
                             <tr>
@@ -37,13 +50,13 @@
                                 <td>{{ $kegiatan->pagu }}</td>
                                 <td>
                                 <div class="btn-group">
-                                <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>
                                 &nbsp;
                                 <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST" class="">
                                 @csrf
                                 @method("DELETE")
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah kamu yakin data di hapus?')">
-                                    Hapus</button>
+                                    <i class="fas fa-fw fa-trash"></i>Hapus</button>
                             </form>
                             </div>
                             </td>

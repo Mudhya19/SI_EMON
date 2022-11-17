@@ -42,7 +42,7 @@
                                 <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             </div>
-                        <input type="text" name="tanggal" value="{{ $realisasi->tanggal }}"  class="form-control" id="simpleDataInput">
+                        <input type="text" name="tanggal" class="form-control" id="simpleDataInput" value="{{ $realisasi->tanggal }}">
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="selectSinglePlaceholder">Triwulan</label>
-                        <select class="select-single-placeholder form-control" name="triwulan" id="selectSinglePlaceholder" value="{{ $realisasi->triwulan }}" required>
+                        <select class="select-single-placeholder form-control" name="triwulan" id="selectSinglePlaceholder" value="{{ $realisasi->triwulan }} required>
                             <option value="I">Triwulan I</option>
                             <option value="II">Triwulan II</option>
                             <option value="III">Triwulan III</option>
@@ -63,14 +63,26 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="pagu">Pagu</label>
-                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $realisasi->pagu }}" required>
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" value="{{ $realisasi->satuan }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" value="{{ $realisasi->target_satuan }}" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" value="{{ $realisasi->target }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="keterangan" rows="6">{{ $realisasi->keterangan }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pagu">Pagu</label>
+                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $realisasi->pagu }}" required>
                     </div>
                 </div>
             </div>

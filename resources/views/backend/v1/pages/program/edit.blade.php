@@ -21,50 +21,50 @@
             @csrf
             @method('patch')
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="kode">Kode program</label>
                         <input type="text" class="form-control" name="kode" id="kode" value="{{ $program->kode }}" required>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="nama">Nama program </label>
-                        <input type="text" class="form-control" name="nama" id="nama" value="{{ $program->nama }}" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="tahun">Tahun</label>
                         <input type="text" class="form-control" name="tahun" id="tahun" value="{{ $program->tahun }}" required>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $program->indikator }}" required>
+                        <label for="nama">Nama program</label>
+                        <input type="text" class="form-control" name="nama" id="nama" value="{{ $program->nama }}" required>
                     </div>
                 </div>
-            <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label for="satuan_indkator">Satuan Indikator</label>
-                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" value="{{ $program->satuan_indikator }}" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" value="{{ $program->target }}" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" value="{{ $program->satuan }}" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="pagu">pagu</label>
-                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $program->pagu }}" required>
+                        <label for="indikator">Indikator</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6" required>{{ $program->indikator }} </textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" value="{{ $program->target_satuan }}" required>
+                        <label for="pagu">pagu</label>
+                        <input type="text" class="form-control" name="pagu" id="pagu" value="{{ $program->pagu }}" required>
                     </div>
                 </div>
             </div>

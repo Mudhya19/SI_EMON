@@ -44,8 +44,10 @@ class RealisasiController extends Controller
             'nama' => 'required',
             'tanggal' => 'required',
             'triwulan' => 'required',
+            'target' => 'required',
+            'satuan' => 'required', 
             'pagu' => 'required',
-            'target_satuan' => 'required', 
+            'keterangan' => 'required',
         ]);
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
@@ -91,8 +93,10 @@ class RealisasiController extends Controller
             'nama' => 'required',
             'tanggal' => 'required',
             'triwulan' => 'required',
+            'target' => 'required',
+            'satuan' => 'required', 
             'pagu' => 'required',
-            'target_satuan' => 'required', 
+            'keterangan' => 'required', 
         ]);
         
         $data = $request->all();

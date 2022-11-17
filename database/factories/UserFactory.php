@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'rule' => 'Admin',
             'jabatan' => 'Admin',
             'username' => 'admin',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password$2y$10$QuiZmNYkEI1uoUKI0VU0c.UWK2DlTg0pFMdiAw9ZVzbEtLspH14l
             'remember_token' => Str::random(10),
         ];
     }

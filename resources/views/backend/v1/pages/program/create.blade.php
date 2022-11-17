@@ -20,50 +20,50 @@
         <form action="{{ route('program.store') }}" method="POST">
             @csrf
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="kode">Kode program</label>
                         <input type="text" class="form-control" name="kode" id="kode" required>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="tahun">Tahun</label>
+                        <input type="text" class="form-control" name="tahun" id="tahun" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama program</label>
                         <input type="text" class="form-control" name="nama" id="nama" required>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label for="tahun">Tahun</label>
-                        <input type="text" class="form-control" name="tahun" id="tahun" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" required>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" required>
+                        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6"></textarea>
                     </div>
                 </div>
-            <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="satuan_indkator">Satuan Indikator</label>
-                        <input type="text" class="form-control" name="satuan_indikator" id="satuan_indikator" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagu">pagu</label>
                         <input type="text" class="form-control" name="pagu" id="pagu" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" required>
                     </div>
                 </div>
             </div>

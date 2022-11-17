@@ -62,14 +62,26 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="pagu">Pagu</label>
-                        <input type="text" class="form-control" name="pagu" id="pagu" required>
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="target_satuan">Target Satuan</label>
-                        <input type="text" class="form-control" name="target_satuan" id="target_satuan" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="keterangan" rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pagu">Pagu</label>
+                        <input type="text" class="form-control" name="pagu" id="pagu" required>
                     </div>
                 </div>
             </div>

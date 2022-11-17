@@ -32,6 +32,7 @@
                         <select class="select-single-placeholder form-control" name="jabatan" id="selectSinglePlaceholder" required>
                             <option value="kadis">kadis</option>
                             <option value="kabid">Kabid</option>
+                            <option value="admin">Admin</option>
                         </select>
                     </div>
                 </div>

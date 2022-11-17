@@ -9,19 +9,28 @@
                 <h6 class="m-0 font-weight-bold text-primary">Data pengguna</h6>
             </div>
             <div class="table-responsive p-3">
-                <a href="{{ route('user.create') }}" method="POST" class="btn btn-primary mb-3">Tambah Data</a>
+                <a href="{{ route('user.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>
                             <th>Nama user</th>
                             <th>Nip</th>
-                            <th class="text-nowrap">Rule</th>
-                            <th class="text-nowrap">Jabatan</th>
+                            <th>Rule</th>
+                            <th>Jabatan</th>
                             <th>Username</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <th>No</th>
+                            <th>Nama user</th>
+                            <th>Nip</th>
+                            <th>Rule</th>
+                            <th>Jabatan</th>
+                            <th>Username</th>
+                            <th>Aksi</th>
+                    </tfoot>
                     <tbody>
                         @foreach ($users as $user) 
                             <tr>
@@ -34,13 +43,13 @@
                                 <td>{{ $user->username }}</td>
                                 <td>
                                 <div class="btn-group">
-                                <a href="{{route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{route('user.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>
                                 &nbsp;
                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="">
                                 @csrf
                                 @method("DELETE")
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah kamu yakin data di hapus?')">
-                                    Hapus</button>
+                                    <i class="fas fa-fw fa-trash"></i>Hapus</button>
                             </form>
                             </div>
                             </td>
