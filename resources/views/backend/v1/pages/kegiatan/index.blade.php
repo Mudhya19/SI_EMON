@@ -10,12 +10,14 @@
             </div>
             <div class="table-responsive p-3">
                 <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
+                <a href="{{ route('report-kegiatan') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>
                             <th>Kode Program</th>
                             <th>Kode Kegiatan</th>
+                            <th>Otorisasi</th>
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
@@ -29,6 +31,7 @@
                             <th>No</th>
                             <th>Kode Program</th>
                             <th>Kode Kegiatan</th>
+                            <th>Otorisasi</th>
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
@@ -41,8 +44,9 @@
                         @foreach ($kegiatans as $kegiatan)
                             <tr>
                                 <td>{{ $loop->iteration }}.</td>
-                                <th>{{ $kegiatan->program->kode .' - '. $kegiatan->program->nama }}</th>
-                                <th>{{ $kegiatan->kode }}</th>
+                                <td>{{ $kegiatan->program->kode .' - '. $kegiatan->program->nama }}</td>
+                                <td>{{ $kegiatan->kode }}</td>
+                                <td>{{ $kegiatan->user->nama. ' - '. $kegiatan->user->nip}}</td>
                                 <td>{{ $kegiatan->nama }}</td>
                                 <td>{{ $kegiatan->indikator }}</td>
                                 <td>{{ $kegiatan->target }}</td>

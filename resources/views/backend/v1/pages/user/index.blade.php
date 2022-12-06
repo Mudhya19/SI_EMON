@@ -10,6 +10,7 @@
             </div>
             <div class="table-responsive p-3">
                 <a href="{{ route('user.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
+                <a href="{{ route('report-user') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>

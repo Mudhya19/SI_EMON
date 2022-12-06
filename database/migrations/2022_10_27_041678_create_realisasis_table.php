@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('target');
             $table->string('satuan');
             $table->string('pagu');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullalable;
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
 use App\Models\Program;
+use App\Models\User; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,11 @@ class KegiatanController extends Controller
         return view('backend.v1.pages.kegiatan.index', $data);
     }
 
+    public function cetakKegiatan()
+    {
+        $data['kegiatans'] = Kegiatan::all();
+        return view('backend.v1.pages.kegiatan.report-kegiatan', $data);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -29,6 +35,7 @@ class KegiatanController extends Controller
     public function create()
     {
         $data['programs'] = Program::all();
+        $data['users'] = User::where('jabatan', '=', 'kabid' )->get();
         return view('backend.v1.pages.kegiatan.create', $data);
     }
 
@@ -47,10 +54,10 @@ class KegiatanController extends Controller
             'target' => 'required',
             'satuan' => 'required',
             'pagu' => 'required',
+            'user_id' => 'required',
         ]);
         
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
         Kegiatan::create($data);
 
         return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil di tambahkan');
@@ -77,6 +84,7 @@ class KegiatanController extends Controller
     {
         $data['kegiatan'] = $kegiatan;
         $data['programs'] = Program::all();
+        $data['users'] = User::where('jabatan', '=', 'kabid' )->get();
         return view('backend.v1.pages.kegiatan.edit', $data);
     }
 
@@ -96,10 +104,10 @@ class KegiatanController extends Controller
             'target' =>'required',
             'satuan' => 'required',
             'pagu' => 'required',
+            'user_id' => 'required',
         ]);
 
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
         $kegiatan->update($data);
 
         return to_route('kegiatan.index')->with('success', 'Data kegiatan berhasil di perbarui');

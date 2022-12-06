@@ -11,6 +11,7 @@
             </div>
             <div class="table-responsive p-3">
                 <a href="{{ route('program.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah</a>
+                <a href="{{ route('report-program') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
@@ -27,19 +28,19 @@
                     </thead>
                     <tfoot>
                         <th>No</th>
-                            <th>kode Program</th>
-                            <th>Nama Program</th>
-                            <th>Tahun</th>
-                            <th class="text-nowrap">Indikator</th>
-                            <th class="text-nowrap">Target</th>
-                            <th>Satuan</th>
-                            <th>Pagu</th>
-                            <th>Aksi</th>
+                        <th>kode Program</th>
+                        <th>Nama Program</th>
+                        <th>Tahun</th>
+                        <th class="text-nowrap">Indikator</th>
+                        <th class="text-nowrap">Target</th>
+                        <th>Satuan</th>
+                        <th>Pagu</th>
+                        <th>Aksi</th>
                     </tfoot>
                     <tbody>
                         @foreach ($programs as $program)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $program->kode }}</td>
                                 <td>{{ $program->nama }}</td>
                                 <td>{{ $program->tahun }}</td>

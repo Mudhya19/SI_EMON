@@ -18,7 +18,23 @@ class RealisasiController extends Controller
     public function index()
     {
         $data['realisasis'] = Realisasi::all();
-        return view('backend.v1.pages.realisasi.index', $data);
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.index', $data);
+        } else {
+            $data['kegiatans'] = kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            return view('backend.v1.pages.realisasi.user.index', $data);
+        }
+    }
+
+    public function cetakRealisasi()
+    {
+        $data['realisasis'] = Realisasi::all();
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+        } else {
+            $data['kegiatans'] = kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            return view('backend.v1.pages.realisasi.user.report-realisasi', $data);
+        }
     }
 
     /**
@@ -28,8 +44,32 @@ class RealisasiController extends Controller
      */
     public function create()
     {
-        $data['kegiatans'] = Kegiatan::all();
-        return view('backend.v1.pages.realisasi.create', $data);
+        
+        if (Auth::user()->rule == 'user'){
+            $month = date('m');
+            $data['triwulan'] = 0;
+
+            if ($month < 4 ){
+                $data['triwulan'] = 1;
+            } elseif ($month < 7) {
+                $data['triwulan'] = 2;
+            } elseif ($month < 10) {
+                $data['triwulan'] = 3;
+            } else {
+                $data['triwulan'] = 4;
+            }
+
+            $kegiatan = Kegiatan::where('user_id', Auth::user()->id)->get();
+            $data['kegiatans'] = $kegiatan;
+            // dd($kegiatan[0]->pagu);
+            $data['pagu'] = $kegiatan[0]->pagu;
+            $data['target'] = $kegiatan[0]->target;
+            $data['satuan'] = $kegiatan[0]->satuan;
+            $data['terserap'] = $kegiatan[0]->realisasi->sum('pagu');
+            $data['sisa'] = $data['pagu'] - $data['terserap'];
+
+            return view('backend.v1.pages.realisasi.user.create', $data);
+        }
     }
 
     /**
@@ -77,7 +117,7 @@ class RealisasiController extends Controller
     {
         $data['realisasi'] = $realisasi;
         $data['kegiatans'] = Kegiatan::all();
-        return view('backend.v1.pages.realisasi.edit', $data);
+        return view('backend.v1.pages.realisasi.user.edit', $data);
     }
 
     /**
@@ -116,5 +156,13 @@ class RealisasiController extends Controller
     {
         $realisasi->delete();
         return to_route('realisasi.index')->with('success', 'Data Realisasi berhasil di hapus');
+    }
+
+    public function boot()
+    {
+        Blade::directive('currency', function ($value)
+        {
+            return "Rp. <?php echo number_format($value, 0, ',', '.');?>";
+        });
     }
 }

@@ -21,6 +21,12 @@ class ProgramController extends Controller
             
     }
 
+    public function cetakProgram()
+    {
+        $data['programs'] = Program::all();
+        return view('backend.v1.pages.program.report-program', $data);
+            
+    }
     /**
      * Show the form for creating a new resource.
      *

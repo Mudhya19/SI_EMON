@@ -28,10 +28,21 @@
                 </select>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="kode">Kode kegiatan</label>
                         <input type="text" class="form-control" name="kode" id="kode" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="selectSinglePlaceholder">Otorisasi</label>
+                    <select class="select-single-placeholder form-control" name="user_id" id="selectSinglePlaceholder" required>
+                        <option value="">---Pilih Kepala bidang---</option>
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->nip.' - '.$user->nama}}</option>
+                        @endforeach
+                    </select>
                     </div>
                 </div>
             </div>
@@ -44,14 +55,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="satuan">Satuan</label>
-                        <input type="text" class="form-control" name="satuan" id="satuan" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" required>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="target">Target</label>
-                        <input type="text" class="form-control" name="target" id="target" required>
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" required>
                     </div>
                 </div>
             </div>
@@ -59,7 +70,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" required>
+                        <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">

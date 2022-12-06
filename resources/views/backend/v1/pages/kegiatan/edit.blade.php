@@ -30,10 +30,21 @@
                 </select>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="kode">Kode kegiatan</label>
                         <input type="text" class="form-control" name="kode" id="kode" value="{{ $kegiatan->kode }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="selectSinglePlaceholder">Otorisasi</label>
+                    <select class="select-single-placeholder form-control" name="user_id" id="selectSinglePlaceholder" required>
+                        <option value="">---Pilih Kepala bidang---</option>
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ ($kegiatan->user_id == $user->id) ? 'selected' : '' }}>{{ $user->nip.' - '.$user->nama}}</option>
+                        @endforeach
+                    </select>
                     </div>
                 </div>
             </div>
@@ -46,14 +57,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="satuan">Satuan</label>
-                        <input type="text" class="form-control" name="satuan" id="satuan" value="{{ $kegiatan->satuan }}" required>
+                        <label for="target">Target</label>
+                        <input type="text" class="form-control" name="target" id="target" value="{{ $kegiatan->target }}" required>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="target">Target</label>
-                        <input type="text" class="form-control" name="target" id="target" value="{{ $kegiatan->target }}" required>
+                        <label for="satuan">Satuan</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" value="{{ $kegiatan->satuan }}" required>
                     </div>
                 </div>
             </div>
@@ -61,7 +72,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="indikator">Indikator</label>
-                        <input type="text" class="form-control" name="indikator" id="indikator" value="{{ $kegiatan->indikator }}"required>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6" required>{{ $kegiatan->indikator }}</textarea>
                     </div>
                 </div>
                 <div class="col-md-6">

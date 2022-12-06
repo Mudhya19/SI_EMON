@@ -19,4 +19,9 @@ class Kegiatan extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function realisasi()
+    {
+        return $this->hasMany(Realisasi::class);
+    }
 }

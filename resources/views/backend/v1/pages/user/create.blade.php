@@ -30,7 +30,6 @@
                     <div class="form-group">
                         <label for="selectSinglePlaceholder">Jabatan</label>
                         <select class="select-single-placeholder form-control" name="jabatan" id="selectSinglePlaceholder" required>
-                            <option value="kadis">kadis</option>
                             <option value="kabid">Kabid</option>
                             <option value="admin">Admin</option>
                         </select>
@@ -42,8 +41,8 @@
                     <div class="form-group">
                         <label for="selectSinglePlaceholder">Rule</label>
                         <select class="select-single-placeholder form-control" name="rule" id="selectSinglePlaceholder" required>
-                            <option value="admin">Admin</option>
                             <option value="user">User</option>
+                            <option value="admin">Admin</option>               
                         </select>
                     </div>
                 </div>

@@ -20,6 +20,11 @@ class UserController extends Controller
         return view('backend.v1.pages.user.index', $data);
     }
 
+    public function cetakUser()
+    {
+        $data['users'] = User::all();
+        return view('backend.v1.pages.user.report-user', $data);
+    }
     /**
      * Show the form for creating a new resource.
      *
