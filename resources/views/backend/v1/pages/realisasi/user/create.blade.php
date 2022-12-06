@@ -112,7 +112,7 @@
             <input type="text" name="triwulan" value="{{ $triwulan }}" hidden>
             <div class="form-group">
                 <label for="select2SinglePlaceholder">Kegiatan</label>
-                <select class="select2-single-placeholder form-control" name="kegiatan_id" id="select2SinglePlaceholder" required>
+                <select class="select2-single-placeholder form-control" name="kegiatan_id" id="kegiatan_id" required>
                     <option value="">---Pilih satu ID Kegiatan---</option>
                     @foreach ($kegiatans as $kegiatan)
                     <option value="{{ $kegiatan->id }}">{{ $kegiatan->kode.' - '.$kegiatan->nama}}</option>

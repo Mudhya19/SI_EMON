@@ -19,14 +19,18 @@
       $('.select2-single-placeholder').select2({
       allowClear: true
       });
-      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTable').DataTable();
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
 
       $('#simple-date1 .input-group.date').datepicker({
         format: 'yyyy/mm/dd',
         todayBtn: 'linked',
         todayHighlight: true,
-        autoclose: true,        
+        autoclose: true,
       });
     });
+
+    $(document).ready(function () {
+    $('table.display').DataTable();
+});
 </script>

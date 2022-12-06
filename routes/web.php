@@ -5,6 +5,8 @@ use App\Http\Controllers\backend\v1\ProgramController;
 use App\Http\Controllers\backend\v1\KegiatanController;
 use App\Http\Controllers\backend\v1\RealisasiController;
 use App\Http\Controllers\backend\v1\UserController;
+use App\Http\Controllers\backend\v1\ListController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +36,3 @@ Route::middleware([
     Route::get("report-realisasi", [RealisasiController::class, 'cetakRealisasi'])->name('report-realisasi');
     Route::get("report-user", [UserController::class, 'cetakUser'])->name('report-user');
 });
-    

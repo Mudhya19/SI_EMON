@@ -16,7 +16,7 @@
             <div class="card-body bg-info">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs text-light font-weight-bold text-uppercase mb-1">Tanggal {{ date('d M Y') }}, Triwulan ke-{{ $triwulan }}</div>
+                        <div class="text-xs text-light font-weight-bold text-uppercase mb-1">Tanggal {{ date('d M Y') }}, Triwulan ke-{{ $realisasi->triwulan }}</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Pagu anggaran</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-                <span><h5>@currency($pagu)</h5></span>
+                <span><h5>@currency($realisasi->pagu)</h5></span>
                 </div>
             </div>
             <div class="col-auto">
@@ -51,7 +51,7 @@
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Target</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
-                <span><h5>{{ $target . ' '. $satuan }}</h5></span>
+                <span><h5>{{ $realisasi->target . ' '. $realisasi->satuan }}</h5></span>
                 </div>
             </div>
             <div class="col-auto">
@@ -70,7 +70,7 @@
                 <div class="text-xs font-weight-bold text-uppercase mb-1">anggaran Terserap</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
-                <span><h5>@currency($terserap)</h5></span>
+                <span><h5>@currency($realisasi->terserap)</h5></span>
                 </div>
             </div>
             <div class="col-auto">
@@ -89,7 +89,7 @@
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Sisa anggaran</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
-                <span><h5>@currency($sisa)</h5></span>
+                <span><h5>@currency($realisasi->sisa)</h5></span>
                 </div>
             </div>
             <div class="col-auto">
@@ -106,16 +106,17 @@
         {{-- <a href="{{ route('program.index') }}" class="btn btn-primary mt-4">Data Mahasiswa</a> --}}
     </div>
     <div class="card-body">
-        <form action="{{ route('realisasi.store') }}" method="POST">
+        <form action="{{ route('realisasi.update', $realisasi) }}" method="POST">
             @csrf
+            @method('patch')
             <input type="date" name="tanggal" value="{{date('Y-m-d')}}" hidden>
-            <input type="text" name="triwulan" value="{{ $triwulan }}" hidden>
+            <input type="text" name="triwulan" value="{{ $realisasi->triwulan }}" hidden>
             <div class="form-group">
                 <label for="select2SinglePlaceholder">Kegiatan</label>
-                <select class="select2-single-placeholder form-control" name="kegiatan_id" id="select2SinglePlaceholder" required>
+                <select class="select2-single-placeholder form-control" name="kegiatan_id" id="kegiatan_id" required>
                     <option value="">---Pilih satu ID Kegiatan---</option>
                     @foreach ($kegiatans as $kegiatan)
-                    <option value="{{ $kegiatan->id }}">{{ $kegiatan->kode.' - '.$kegiatan->nama}}</option>
+                    <option value="{{ $kegiatan->id }}" {{ ($kegiatan->id == $realisasi->kegiatan_id) ? 'selected' : ''}}>{{ $kegiatan->kode .' - '. $kegiatan->nama }}</option>
                     @endforeach
                 </select>
             </div>

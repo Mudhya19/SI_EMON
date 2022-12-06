@@ -9,7 +9,7 @@
         <li>{{$user}}</li>
     @endforeach
     </div>
-</div>    
+</div>
 @endif
 <div class="card">
     <div class="card-header py-3">
@@ -28,11 +28,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="selectSinglePlaceholder">Jabatan</label>
-                        <select class="select-single-placeholder form-control" name="jabatan" id="selectSinglePlaceholder" required>
-                            <option value="kabid">Kabid</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                        <label for="jabatan">Jabatan</label>
+                        <input type="text" class="form-control" name="jabatan" id="jabatan" required>
                     </div>
                 </div>
             </div>
@@ -42,7 +39,7 @@
                         <label for="selectSinglePlaceholder">Rule</label>
                         <select class="select-single-placeholder form-control" name="rule" id="selectSinglePlaceholder" required>
                             <option value="user">User</option>
-                            <option value="admin">Admin</option>               
+                            <option value="admin">Admin</option>
                         </select>
                     </div>
                 </div>

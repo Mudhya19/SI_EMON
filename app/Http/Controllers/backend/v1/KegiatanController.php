@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
 use App\Models\Program;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +35,7 @@ class KegiatanController extends Controller
     public function create()
     {
         $data['programs'] = Program::all();
-        $data['users'] = User::where('jabatan', '=', 'kabid' )->get();
+        $data['users'] = User::where('rule', '=', 'user' )->get();
         return view('backend.v1.pages.kegiatan.create', $data);
     }
 
@@ -56,7 +56,7 @@ class KegiatanController extends Controller
             'pagu' => 'required',
             'user_id' => 'required',
         ]);
-        
+
         $data = $request->all();
         Kegiatan::create($data);
 
@@ -84,7 +84,7 @@ class KegiatanController extends Controller
     {
         $data['kegiatan'] = $kegiatan;
         $data['programs'] = Program::all();
-        $data['users'] = User::where('jabatan', '=', 'kabid' )->get();
+        $data['users'] = User::where('rule', '=', 'user' )->get();
         return view('backend.v1.pages.kegiatan.edit', $data);
     }
 

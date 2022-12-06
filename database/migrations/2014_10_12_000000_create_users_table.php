@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nip');
             $table->enum('rule',['admin', 'user']);
-            $table->enum('jabatan',['kadis', 'kabid']);
+            $table->string('jabatan');
             $table->string('username');
             $table->string('password');
             $table->rememberToken();

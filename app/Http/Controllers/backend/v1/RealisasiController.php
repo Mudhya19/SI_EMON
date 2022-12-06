@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
 use App\Models\Realisasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,16 @@ class RealisasiController extends Controller
     public function index()
     {
         $data['realisasis'] = Realisasi::all();
+        $data['employees'] = User::where('rule','user')->get();
         if (Auth::user()->rule == 'admin'){
+            $data['kegiatans'] = Kegiatan::all();
             return view('backend.v1.pages.realisasi.admin.index', $data);
         } else {
-            $data['kegiatans'] = kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->get();
+            $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
+            $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
+            $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
             return view('backend.v1.pages.realisasi.user.index', $data);
         }
     }
@@ -32,7 +39,7 @@ class RealisasiController extends Controller
         if (Auth::user()->rule == 'admin'){
             return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
         } else {
-            $data['kegiatans'] = kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
             return view('backend.v1.pages.realisasi.user.report-realisasi', $data);
         }
     }
@@ -44,7 +51,7 @@ class RealisasiController extends Controller
      */
     public function create()
     {
-        
+
         if (Auth::user()->rule == 'user'){
             $month = date('m');
             $data['triwulan'] = 0;
@@ -85,7 +92,7 @@ class RealisasiController extends Controller
             'tanggal' => 'required',
             'triwulan' => 'required',
             'target' => 'required',
-            'satuan' => 'required', 
+            'satuan' => 'required',
             'pagu' => 'required',
             'keterangan' => 'required',
         ]);
@@ -134,11 +141,11 @@ class RealisasiController extends Controller
             'tanggal' => 'required',
             'triwulan' => 'required',
             'target' => 'required',
-            'satuan' => 'required', 
+            'satuan' => 'required',
             'pagu' => 'required',
-            'keterangan' => 'required', 
+            'keterangan' => 'required',
         ]);
-        
+
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         $realisasi->update($data);
