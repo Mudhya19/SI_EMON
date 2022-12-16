@@ -47,7 +47,7 @@
                                 <td>{{ $program->indikator }}</td>
                                 <td>{{ $program->target }}</td>
                                 <td>{{ $program->satuan }}</td>
-                                <td>{{ $program->pagu }}</td>
+                                <td>@currency($program->pagu)</td>
                                 <td>
                                 <div class="btn-group">
                                 <a href="{{route('program.edit', $program->id) }}" class="btn btn-warning btn-sm">

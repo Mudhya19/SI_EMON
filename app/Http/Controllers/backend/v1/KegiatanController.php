@@ -34,6 +34,7 @@ class KegiatanController extends Controller
      */
     public function create()
     {
+
         $data['programs'] = Program::all();
         $data['users'] = User::where('rule', '=', 'user' )->get();
         return view('backend.v1.pages.kegiatan.create', $data);
@@ -56,6 +57,15 @@ class KegiatanController extends Controller
             'pagu' => 'required',
             'user_id' => 'required',
         ]);
+
+        $data['programs'] = Program::where('id', $request->program_id->first());
+        $data['pagu'] = $data['program']->pagu;
+        $data['terserap'] = $data['program']->kegiatan->sum('pagu');
+        $data['sisa'] = $data['pagu'] - $data['terserap'];
+
+        if ($request->pagu->$data['sisa']){
+            return to_route('kegiatan.create')->with('failed', 'Pagu yang dimasukan melebihi batas anggaran program ');
+        }
 
         $data = $request->all();
         Kegiatan::create($data);
@@ -106,6 +116,16 @@ class KegiatanController extends Controller
             'pagu' => 'required',
             'user_id' => 'required',
         ]);
+
+        $data['program'] = Program::where('id', $request->program_id)->first();
+        $data['pagu'] = $data['program']->pagu;
+        $data['terserap'] = $data['program']->kegiatan->where('id', '!=', $kegiatan->id)->sum('pagu');
+        $data['sisa'] = $data['pagu'] - $data['terserap'];
+
+        // bila pagu yang di input melebihi sisa pagu program maka dianggap gagal
+        if ($request->pagu > $data['sisa']) {
+            return to_route('kegiatan.edit', $kegiatan->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Program');
+        }
 
         $data = $request->all();
         $kegiatan->update($data);

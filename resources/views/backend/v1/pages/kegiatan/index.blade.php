@@ -21,8 +21,9 @@
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
-                            <th>Pagu</th>
                             <th>Satuan</th>
+                            <th>Pagu Program</th>
+                            <th>Pagu Kegiatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -35,8 +36,9 @@
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
-                            <th>Pagu</th>
                             <th>Satuan</th>
+                            <th>Pagu Program</th>
+                            <th>Pagu Kegiatan</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -51,7 +53,8 @@
                                 <td>{{ $kegiatan->indikator }}</td>
                                 <td>{{ $kegiatan->target }}</td>
                                 <td>{{ $kegiatan->satuan }}</td>
-                                <td>{{ $kegiatan->pagu }}</td>
+                                <td>@currency($kegiatan->pagu)</td>
+                                <td>@currency($kegiatan->program->pagu)</td>
                                 <td>
                                 <div class="btn-group">
                                 <a href="{{route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>

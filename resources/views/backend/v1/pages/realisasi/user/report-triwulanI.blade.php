@@ -12,32 +12,34 @@
             border : 1px solid black;
         }
     </style>
-    <title>CETAK DATA PROGRAM</title>
+    <title>CETAK DATA TRIWULAN I</title>
 </head>
 <body>
     <div class="form-group">
-        <p align="center"><b>LAPORAN DATA PROGRAM</b></p>
+        <p align="center"><b>LAPORAN DATA TRIWULAN I</b></p>
         <table class="static" align="center" rules="all" border="1px" style="width: 90%;">
             <tr>
                 <th>No</th>
-                <th>kode Program</th>
-                <th>Nama Program</th>
-                <th>Tahun</th>
-                <th>Indikator</th>
+                <th>Kode Realisasi</th>
+                <th>Nama Realisasi</th>
+                <th>Tanggal</th>
+                <th>Triwulan</th>
                 <th>Target</th>
                 <th>Satuan</th>
                 <th>Pagu</th>
+                <th>Keterangan</th>
             </tr>
-            @foreach ($programs as $program)
+            @foreach ($triwulan_I as $tw_I)
                 <tr>
                     <td>{{ $loop->iteration }}.</td>
-                    <td>{{ $program->kode }}</td>
-                    <td>{{ $program->nama }}</td>
-                    <td>{{ $program->tahun }}</td>
-                    <td>{{ $program->indikator }}</td>
-                    <td>{{ $program->target }}</td>
-                    <td>{{ $program->satuan }}</td>
-                    <td>@currency($program->pagu)</td>            
+                    <td>{{ $tw_I->kegiatan->kode . ' - ' . $tw_I->kegiatan->nama }}</td>
+                    <td>{{ $tw_I->nama }}</td>
+                    <td>{{ $tw_I->tanggal }}</td>
+                    <td>{{ $tw_I->triwulan }}</td>
+                    <td>{{ $tw_I->target }}</td>
+                    <td>{{ $tw_I->satuan }}</td>
+                    <td>@currency($tw_I->pagu)</td>
+                    <td>{{ $tw_I->keterangan }}</td>
                 </tr>
             @endforeach
         </table>

@@ -37,7 +37,7 @@
                     <td>{{ $kegiatan->indikator }}</td>
                     <td>{{ $kegiatan->target }}</td>
                     <td>{{ $kegiatan->satuan }}</td>
-                    <td>{{ $kegiatan->pagu }}</td>          
+                    <td>@currency($kegiatan->pagu)</td>          
                 </tr>
             @endforeach
         </table>

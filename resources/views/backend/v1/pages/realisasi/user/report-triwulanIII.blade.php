@@ -12,11 +12,11 @@
             border : 1px solid black;
         }
     </style>
-    <title>CETAK DATA REALISASI</title>
+    <title>CETAK DATA TRIWULAN III</title>
 </head>
 <body>
     <div class="form-group">
-        <p align="center"><b>LAPORAN DATA REALISASI</b></p>
+        <p align="center"><b>LAPORAN DATA TRIWULAN III</b></p>
         <table class="static" align="center" rules="all" border="1px" style="width: 90%;">
             <tr>
                 <th>No</th>
@@ -29,17 +29,17 @@
                 <th>Pagu</th>
                 <th>Keterangan</th>
             </tr>
-            @foreach ($realisasis as $realisasi)
+            @foreach ($triwulan_III as $tw_III)
                 <tr>
                     <td>{{ $loop->iteration }}.</td>
-                    <td>{{ $realisasi->kegiatan->kode .' - '. $realisasi->kegiatan->nama }}</td>
-                    <td>{{ $realisasi->nama }}</td>
-                    <td>{{ $realisasi->tanggal }}</td>
-                    <td>{{ $realisasi->triwulan}}</td>
-                    <td>{{ $realisasi->target }}</td>
-                    <td>{{ $realisasi->satuan }}</td>
-                    <td>{{ $realisasi->pagu }}</td>
-                    <td>{{ $realisasi->keterangan }}</td>
+                    <td>{{ $tw_III->kegiatan->kode . ' - ' . $tw_III->kegiatan->nama }}</td>
+                    <td>{{ $tw_III->nama }}</td>
+                    <td>{{ $tw_III->tanggal }}</td>
+                    <td>{{ $tw_III->triwulan }}</td>
+                    <td>{{ $tw_III->target }}</td>
+                    <td>{{ $tw_III->satuan }}</td>
+                    <td>@currency($tw_III->pagu)</td>
+                    <td>{{ $tw_III->keterangan }}</td>
                 </tr>
             @endforeach
         </table>

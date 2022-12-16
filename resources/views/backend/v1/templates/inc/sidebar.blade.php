@@ -44,4 +44,12 @@
             @endif
         </a>
     </li>
+    @if (Auth::user()->rule == 'admin')
+    <li class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.report']) ? 'active' : '' }}">
+        <a href="{{ route('report') }}" target="_blank" method="POST" class="nav-link"><i
+                class="fas fa-fw fa-download"></i>
+            <span>Rekap Laporan Realisasi</span>
+        </a>
+    </li>
+    @endif
 </ul>

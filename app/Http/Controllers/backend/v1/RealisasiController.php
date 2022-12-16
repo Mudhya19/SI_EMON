@@ -18,10 +18,8 @@ class RealisasiController extends Controller
      */
     public function index()
     {
-        $data['realisasis'] = Realisasi::all();
-        $data['employees'] = User::where('rule','user')->get();
         if (Auth::user()->rule == 'admin'){
-            $data['kegiatans'] = Kegiatan::all();
+            $data['employees'] = User::where('rule','user')->get();
             return view('backend.v1.pages.realisasi.admin.index', $data);
         } else {
             $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
@@ -31,6 +29,12 @@ class RealisasiController extends Controller
             $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
             return view('backend.v1.pages.realisasi.user.index', $data);
         }
+    }
+
+    public function pilihKegiatan()
+    {
+        $data['kegiatans'] = Kegiatan::where('user_id', Auth::user()->id)->get();
+        return view('backend.v1.pages.realisasi.user.realisasi-kegiatan', $data);
     }
 
     public function cetakRealisasi()
@@ -44,12 +48,69 @@ class RealisasiController extends Controller
         }
     }
 
+    public function cetakRealisasiAdmin()
+    {
+        $data['kegiatans'] = Kegiatan::all();
+        if (Auth::user()->rule == 'admin'){
+
+            return view('backend.v1.pages.realisasi.admin.report', $data);
+        }
+    }
+
+    public function cetakTriwulanI()
+    {
+            $data['realisasis'] = Realisasi::all();
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+        } else {
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->get();
+            return view('backend.v1.pages.realisasi.user.report-triwulanI', $data);
+        }
+    }
+
+    public function cetakTriwulanII()
+    {
+            $data['realisasis'] = Realisasi::all();
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+        } else {
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
+            return view('backend.v1.pages.realisasi.user.report-triwulanII', $data);
+        }
+    }
+
+    public function cetakTriwulanIII()
+    {
+            $data['realisasis'] = Realisasi::all();
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+        } else {
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
+            return view('backend.v1.pages.realisasi.user.report-triwulanIII', $data);
+        }
+    }
+
+    public function cetakTriwulanIV()
+    {
+            $data['realisasis'] = Realisasi::all();
+        if (Auth::user()->rule == 'admin'){
+            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+        } else {
+            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+            $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
+            return view('backend.v1.pages.realisasi.user.report-triwulanIV', $data);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
         if (Auth::user()->rule == 'user'){
@@ -66,13 +127,11 @@ class RealisasiController extends Controller
                 $data['triwulan'] = 4;
             }
 
-            $kegiatan = Kegiatan::where('user_id', Auth::user()->id)->get();
-            $data['kegiatans'] = $kegiatan;
-            // dd($kegiatan[0]->pagu);
-            $data['pagu'] = $kegiatan[0]->pagu;
-            $data['target'] = $kegiatan[0]->target;
-            $data['satuan'] = $kegiatan[0]->satuan;
-            $data['terserap'] = $kegiatan[0]->realisasi->sum('pagu');
+            $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
+            $data['pagu'] = $data['kegiatan']->pagu;
+            $data['target'] = $data['kegiatan']->target;
+            $data['satuan'] = $data['kegiatan']->satuan;
+            $data['terserap'] = $data['kegiatan']->realisasi->sum('pagu');
             $data['sisa'] = $data['pagu'] - $data['terserap'];
 
             return view('backend.v1.pages.realisasi.user.create', $data);
@@ -96,6 +155,17 @@ class RealisasiController extends Controller
             'pagu' => 'required',
             'keterangan' => 'required',
         ]);
+
+        $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
+        $data['pagu'] = $data['kegiatan']->pagu;
+        $data['terserap'] = $data['kegiatan']->realisasi->sum('pagu');
+        $data['sisa'] = $data['pagu'] - $data['terserap'];
+
+        // bila pagu yang di input melebihi sisa pagu kegiatan maka dianggap gagal
+        // if ($request->pagu > $data['sisa']) {
+        //     return to_route('realisasi.create', ['kegiatan_id' => $request->kegiatan_id])->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
+        // }
+
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         Realisasi::create($data);
@@ -145,6 +215,16 @@ class RealisasiController extends Controller
             'pagu' => 'required',
             'keterangan' => 'required',
         ]);
+
+        $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
+        $data['pagu'] = $data['kegiatan']->pagu;
+        $data['terserap'] = $data['kegiatan']->realisasi->where('id', '!=', $realisasi->id)->sum('pagu');
+        $data['sisa'] = $data['pagu'] - $data['terserap'];
+
+        // bila pagu yang di input melebihi sisa pagu kegiatan maka dianggap gagal
+        if ($request->pagu > $data['sisa']) {
+            return to_route('realisasi.edit', $realisasi->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
+        }
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;

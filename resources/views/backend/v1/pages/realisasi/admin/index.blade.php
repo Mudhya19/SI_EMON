@@ -12,11 +12,11 @@
                 <div class="accordion" id="accordionExample">
                     @foreach ($employees as $employee)
                         <div class="card">
-                            <div class="card- bg-success m-lg-3" id="headingOne{{ $loop->iteration }}">
+                            <div class="card- bg-success m-lg-3" id="employeeHeading{{ $loop->iteration }}">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block text-left text-light" type="button"
-                                        data-toggle="collapse" data-target="#collapseOne{{ $loop->iteration }}"
-                                        aria-expanded="true" aria-controls="collapseOne{{ $loop->iteration }}">
+                                        data-toggle="collapse" data-target="#employeeCollapse{{ $loop->iteration }}"
+                                        aria-expanded="true" aria-controls="employeeCollapse{{ $loop->iteration }}">
                                         <h6>{{ $employee->nama . ' - ' . $employee->nip }}
                                             <br>
                                             {{ $employee->jabatan }}
@@ -24,8 +24,8 @@
                                     </button>
                                 </h2>
                             </div>
-                            <div id="collapseOne{{ $loop->iteration }}" class="collapse"
-                                aria-labelledby="headingOne{{ $loop->iteration }}" data-parent="#accordionExample">
+                            <div id="employeeCollapse{{ $loop->iteration }}" class="collapse"
+                                aria-labelledby="employeeHeading{{ $loop->iteration }}" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="table-responsive p-3">
                                         <table class="table align-items-center table-hover display" id="">
@@ -52,17 +52,22 @@
                                                 <th>Keterangan</th>
                                             </tfoot>
                                             <tbody>
-                                                @foreach ($realisasis as $realisasi)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}.</td>
-                                                        <td>{{ $realisasi->nama }}</td>
-                                                        <td>{{ $realisasi->tanggal }}</td>
-                                                        <td>{{ $realisasi->triwulan }}</td>
-                                                        <td>@currency($realisasi->pagu)</td>
-                                                        <td>{{ $realisasi->target }}</td>
-                                                        <td>{{ $realisasi->satuan }}</td>
-                                                        <td>{{ $realisasi->keterangan }}</td>
-                                                    </tr>
+                                                @php
+                                                    $no_realisasi = 1;
+                                                @endphp
+                                                @foreach ($employee->kegiatan as $kegiatan)
+                                                    @foreach ($kegiatan->realisasi as $realisasi)
+                                                        <tr>
+                                                            <td>{{ $no_realisasi++ }}.</td>
+                                                            <td>{{ $realisasi->nama }}</td>
+                                                            <td>{{ $realisasi->tanggal }}</td>
+                                                            <td>{{ $realisasi->triwulan }}</td>
+                                                            <td>@currency($realisasi->pagu)</td>
+                                                            <td>{{ $realisasi->target }}</td>
+                                                            <td>{{ $realisasi->satuan }}</td>
+                                                            <td>{{ $realisasi->keterangan }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -93,15 +98,27 @@
                                                 <th>status</th>
                                             </tfoot>
                                             <tbody>
-                                                @foreach ($kegiatans as $kegiatan)
+                                                @php
+                                                    $no_kegiatan = 1;
+                                                @endphp
+                                                @foreach ($employee->kegiatan as $kegiatan)
                                                     <tr>
-                                                        <td>{{ $loop->iteration }}.</td>
+                                                        <td>{{ $no_kegiatan }}.</td>
                                                         <td>{{ $kegiatan->nama }}</td>
                                                         <td>@currency($kegiatan->pagu)</td>
                                                         <td>@currency($kegiatan->realisasi->sum('pagu'))</td>
                                                         <td>{{ $kegiatan->target }}</td>
                                                         <td>{{ $kegiatan->satuan }}</td>
-                                                        <td><a class="btn btn-warning" href="#" role="button">Proses penyerapan</a></td>
+                                                        @if ($kegiatan->pagu > $kegiatan->realisasi->sum('pagu'))
+                                                            <td><a class="btn btn-warning" href="#"
+                                                                    role="button">Proses penyerapan</a></td>
+                                                        @elseif($kegiatan->pagu == $kegiatan->realisasi->sum('pagu'))
+                                                            <td><a class="btn btn-success" href="#"
+                                                                    role="button">selesai Penyerapan</a></td>
+                                                        @elseif ($kegiatan->pagu < $kegiatan->realisasi->sum('pagu'))
+                                                            <td><a class="btn btn-danger" href="#"
+                                                                    role="button">Melebih Penyerapan</a></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>
