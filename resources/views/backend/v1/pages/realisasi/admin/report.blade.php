@@ -27,6 +27,7 @@
                 <th>Terserap</th>
                 <th>Target</th>
                 <th>Sisa Anggaran</th>
+                <th>TTD</th>
             </tr>
                 @foreach ($kegiatans as $kegiatan)
                     <tr>
@@ -36,6 +37,7 @@
                         <td>@currency($kegiatan->realisasi->sum('pagu'))</td>
                         <td>{{ $kegiatan->target . ' ' .$kegiatan->satuan }}</td>
                         <td>{{ ($kegiatan->pagu - $kegiatan->realisasi->sum('pagu')) }}</td>
+                        <td>H.M Tamberin, S.Sos,MM</td>
                     </tr>
                 @endforeach
         </table>

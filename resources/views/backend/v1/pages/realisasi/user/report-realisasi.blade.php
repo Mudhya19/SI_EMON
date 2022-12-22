@@ -28,6 +28,7 @@
                 <th>Satuan</th>
                 <th>Pagu</th>
                 <th>Keterangan</th>
+                <th>TTD</th>
             </tr>
             @foreach ($realisasis as $realisasi)
                 <tr>
@@ -40,6 +41,7 @@
                     <td>{{ $realisasi->satuan }}</td>
                     <td>@currency($realisasi->pagu)</td>
                     <td>{{ $realisasi->keterangan }}</td>
+                    <td>H.M Tamberin, S.Sos,MM</td>
                 </tr>
             @endforeach
         </table>

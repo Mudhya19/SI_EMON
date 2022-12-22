@@ -1,7 +1,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img src="{{ url('templates/backend') }}/img/tapin.png">
+            <img src="{{ url('templates/backend') }}/img/diskominfo.png">
         </div>
         <div class="sidebar-brand-text mx-4">SI-EMON</div>
     </a>
@@ -40,6 +40,7 @@
                 <i class="fas fa-scroll"></i>
                 <span>List Realisasi PPTK</span>
             @else
+                <i class="fas fa-scroll"></i>
                 <span>Realisasi Bulanan</span>
             @endif
         </a>

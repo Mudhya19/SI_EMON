@@ -27,6 +27,7 @@
                 <th>Target</th>
                 <th>Satuan</th>
                 <th>Pagu</th>
+                <th>TTd</th>
             </tr>
             @foreach ($programs as $program)
                 <tr>
@@ -37,7 +38,8 @@
                     <td>{{ $program->indikator }}</td>
                     <td>{{ $program->target }}</td>
                     <td>{{ $program->satuan }}</td>
-                    <td>@currency($program->pagu)</td>            
+                    <td>@currency($program->pagu)</td>
+                    <td>H.M Tamberin, S.Sos,MM</td>
                 </tr>
             @endforeach
         </table>

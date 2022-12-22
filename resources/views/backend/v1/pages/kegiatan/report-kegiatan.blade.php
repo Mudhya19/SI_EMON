@@ -27,6 +27,7 @@
                 <th>Target</th>
                 <th>Pagu</th>
                 <th>Satuan</th>
+                <th>TTD</th>
             </tr>
             @foreach ($kegiatans as $kegiatan)
                 <tr>
@@ -37,7 +38,8 @@
                     <td>{{ $kegiatan->indikator }}</td>
                     <td>{{ $kegiatan->target }}</td>
                     <td>{{ $kegiatan->satuan }}</td>
-                    <td>@currency($kegiatan->pagu)</td>          
+                    <td>@currency($kegiatan->pagu)</td>
+                    <td>H.M Tamberin, S.Sos,MM</td>
                 </tr>
             @endforeach
         </table>

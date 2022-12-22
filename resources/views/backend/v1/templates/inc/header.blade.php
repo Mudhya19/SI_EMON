@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link href="img/logo/logo.png" rel="icon">
-        <title>Si-Emon</title>
+        <link href="img/logo/diskominfo.png" rel="icon">
+        <title>SI-EMON</title>
         <link href="{{ url('templates/backend') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
             type="text/css">
         <link href="{{ url('templates/backend') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"
