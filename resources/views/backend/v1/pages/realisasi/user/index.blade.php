@@ -8,7 +8,7 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Data Realisasi</h6>
                 </div>
-                <div class="table-responsive p-2">
+                <div class="table-responsive p-3">
                     @if (count(Auth::user()->kegiatan) != 0)
                         <a href="{{ route('realisasi.realisasi-kegiatan') }}" class="btn btn-primary btn-add text-white mb-3">
                             <i class="fas fa-plus fa-sm"></i>Tambah Realisasi

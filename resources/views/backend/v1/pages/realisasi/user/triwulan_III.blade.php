@@ -14,7 +14,7 @@
                 {{-- isi data table --}}
                 <a href="{{ route('report-triwulanIII') }}" target="_blank" method="POST"
                     class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
-                <table class="table table-sm align-items-center table-hover display" id="dataTableHover">
+                <table class="table table-responsive align-items-center table-hover display" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>
