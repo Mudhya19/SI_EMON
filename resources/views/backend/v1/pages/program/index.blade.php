@@ -10,7 +10,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Data Program</h6>
             </div>
             <div class="table-responsive p-3">
-                <a href="{{ route('program.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah</a>
+                <a href="{{ route('program.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah program</a>
                 <a href="{{ route('report-program') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-@endsection    
+@endsection

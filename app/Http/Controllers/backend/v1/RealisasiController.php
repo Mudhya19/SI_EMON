@@ -222,9 +222,9 @@ class RealisasiController extends Controller
         $data['sisa'] = $data['pagu'] - $data['terserap'];
 
         // bila pagu yang di input melebihi sisa pagu kegiatan maka dianggap gagal
-        if ($request->pagu > $data['sisa']) {
-            return to_route('realisasi.edit', $realisasi->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
-        }
+        // if ($request->pagu > $data['sisa']) {
+        //     return to_route('realisasi.edit', $realisasi->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
+        // }
 
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;

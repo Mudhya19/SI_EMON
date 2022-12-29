@@ -9,7 +9,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Data Kegiatan</h6>
             </div>
             <div class="table-responsive p-3">
-                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah Data</a>
+                <a href="{{ route('kegiatan.create') }}" method="POST" class="btn btn-primary mb-3"><i class="fas fa-fw fa-plus"></i>Tambah kegiatan</a>
                 <a href="{{ route('report-kegiatan') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
                 <table class="table align-items-center table-hover" id="dataTableHover">
                     <thead class="thead-light">
@@ -21,7 +21,7 @@
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
-                            <th>Satuan</th>
+                            <th>Satuan </th>
                             <th>Pagu Program</th>
                             <th>Pagu Kegiatan</th>
                             <th>Aksi</th>
@@ -36,7 +36,7 @@
                             <th>Nama Kegiatan</th>
                             <th>Indikator</th>
                             <th>Target</th>
-                            <th>Satuan</th>
+                            <th>Satuan </th>
                             <th>Pagu Program</th>
                             <th>Pagu Kegiatan</th>
                             <th>Aksi</th>

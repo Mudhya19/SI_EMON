@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
         table.static {
             position: relative;
             /* left : 3%; */
-            border : 1px solid black;
+            border: 1px solid black;
         }
     </style>
     <title>CETAK DATA REALISASI BULANAN</title>
 </head>
+
 <body>
     <div class="form-group">
         <p align="center"><b>LAPORAN DATA REALISASI BULANAN</b></p>
@@ -33,10 +35,10 @@
             @foreach ($realisasis as $realisasi)
                 <tr>
                     <td>{{ $loop->iteration }}.</td>
-                    <td>{{ $realisasi->kegiatan->kode .' - '. $realisasi->kegiatan->nama }}</td>
+                    <td>{{ $realisasi->kegiatan->kode . ' - ' . $realisasi->kegiatan->nama }}</td>
                     <td>{{ $realisasi->nama }}</td>
                     <td>{{ $realisasi->tanggal }}</td>
-                    <td>{{ $realisasi->triwulan}}</td>
+                    <td>{{ $realisasi->triwulan }}</td>
                     <td>{{ $realisasi->target }}</td>
                     <td>{{ $realisasi->satuan }}</td>
                     <td>@currency($realisasi->pagu)</td>
@@ -51,4 +53,5 @@
         window.print();
     </script>
 </body>
+
 </html>

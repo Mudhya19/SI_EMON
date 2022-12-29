@@ -1,6 +1,6 @@
 <div class="accordion" id="triwulanIIAccordion">
     <div class="card">
-        <div class="card bg-warning m-lg-2" id="triwulanIIHeader">
+        <div class="card bg-warning m-lg-3" id="triwulanIIHeader">
             <h5 class="mb-0">
                 <button class="btn btn-block btn-link text-left text-light" type="button" data-toggle="collapse"
                     data-target="#triwulanIICollapse" aria-expanded="true" aria-controls="triwulanIICollapse">
@@ -14,7 +14,7 @@
                 {{-- isi data table --}}
                 <a href="{{ route('report-triwulanII') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i
                         class="fas fa-fw fa-print"></i>Cetak Data</a>
-                <table class="table align-items-center table-hover display" id="dataTableHover">
+                <table class="table table-sm align-items-center table-hover display" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>

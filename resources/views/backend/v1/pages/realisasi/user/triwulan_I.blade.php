@@ -1,20 +1,20 @@
 <div class="accordion" id="triwulanIAccordion">
     <div class="card">
-        <div class="card bg-warning m-lg-2" id="triwulanIHeader">
+        <div class="card bg-warning m-lg-3" id="triwulanIHeader">
             <h5 class="mb-0">
                 <button class="btn btn-block btn-link text-left text-light" type="button" data-toggle="collapse"
-                    data-target="#triwulanICollapse" aria-expanded="true"
-                    aria-controls="triwulanICollapse">
+                    data-target="#triwulanICollapse" aria-expanded="true" aria-controls="triwulanICollapse">
                     <h6>Triwulan I</h6>
                 </button>
             </h5>
         </div>
-        <div id="triwulanICollapse" class="collapse"
-            aria-labelledby="triwulanIHeader" data-parent="#triwulanIAccordion">
+        <div id="triwulanICollapse" class="collapse" aria-labelledby="triwulanIHeader"
+            data-parent="#triwulanIAccordion">
             <div class="card-body">
                 {{-- isi data table --}}
-                <a href="{{ route('report-triwulanI') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
-                <table class="table align-items-center table-hover display" id="dataTableHover">
+                <a href="{{ route('report-triwulanI') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i
+                        class="fas fa-fw fa-print"></i>Cetak Data</a>
+                <table class="table table-sm align-items-center table-hover display" id="dataTableHover">
                     <thead class="thead-light">
                         <tr>
                             <th>No</th>
