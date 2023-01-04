@@ -112,7 +112,7 @@
     </div>
     <div class="card mb-3">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Realisasi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Realisasi Pertriwulan</h6>
             {{-- <a href="{{ route('program.index') }}" class="btn btn-primary mt-4">Data Mahasiswa</a> --}}
         </div>
         <div class="card-body">

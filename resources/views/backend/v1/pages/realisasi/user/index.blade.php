@@ -6,12 +6,12 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Realisasi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Realisasi Pertriwulan</h6>
                 </div>
                 <div class="table-responsive p-3">
                     @if (count(Auth::user()->kegiatan) != 0)
                         <a href="{{ route('realisasi.realisasi-kegiatan') }}" class="btn btn-primary btn-add text-white mb-3">
-                            <i class="fas fa-plus fa-sm"></i>Tambah Realisasi
+                            <i class="fas fa-plus fa-sm"></i>Tambah Realisasi Pertriwulan
                         </a>
                         <a href="{{ route('report-realisasi') }}" target="blank" method="POST"
                             class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>

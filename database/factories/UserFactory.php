@@ -25,7 +25,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'nama'=> 'Admin',
+            'nama'=> 'Kepala dinas',
             'nip' => '1',
             'rule' => 'Admin',
             'jabatan' => 'Admin',

@@ -17,19 +17,19 @@
             class="nav-item {{ in_array(Route::currentRouteName(), ['program.index', 'program.create', 'program.edit']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('program.index') }}">
                 <i class="fas fa-tablet-alt"></i>
-                <span>Program</span></a>
+                <span>IKU</span></a>
         </li>
         <li
             class="nav-item {{ in_array(Route::currentRouteName(), ['kegiatan.index', 'kegiatan.create', 'kegiatan.edit']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('kegiatan.index') }}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Kegiatan</span></a>
+                <span>DPA</span></a>
         </li>
         <li
             class="nav-item {{ in_array(Route::currentRouteName(), ['user.index', 'user.create', 'user.edit']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fas fa-fw fa-users"></i>
-                <span>User</span></a>
+                <span>USER</span></a>
         </li>
     @endif
     <li
@@ -38,19 +38,19 @@
             @if (Auth::user()->rule == 'admin')
                 <hr class="sidebar-divider">
                 <i class="fas fa-scroll"></i>
-                <span>List Realisasi PPTK</span>
+                <span>List Target PPTK</span>
             @else
                 <i class="fas fa-scroll"></i>
-                <span>Realisasi Bulanan</span>
+                <span>Realisasi Pertriwulan</span>
             @endif
         </a>
     </li>
     @if (Auth::user()->rule == 'admin')
-    <li class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.report']) ? 'active' : '' }}">
-        <a href="{{ route('report') }}" target="_blank" method="POST" class="nav-link"><i
-                class="fas fa-fw fa-download"></i>
-            <span>Rekap Laporan Realisasi</span>
-        </a>
-    </li>
+        <li class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.report']) ? 'active' : '' }}">
+            <a href="{{ route('report') }}" target="_blank" method="POST" class="nav-link"><i
+                    class="fas fa-fw fa-download"></i>
+                <span>Rekap List Realisasi</span>
+            </a>
+        </li>
     @endif
 </ul>

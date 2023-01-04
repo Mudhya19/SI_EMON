@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row align-items-center">
             <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-uppercase mb-1">PROGRAM</div>
+                <div class="text-xs font-weight-bold text-uppercase mb-1">IKU</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
                 <span><h2>{{ $programs }}</</h2></span>
@@ -27,7 +27,7 @@
         <div class="card-body">
             <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-uppercase mb-1">KEGIATAN</div>
+                <div class="text-xs font-weight-bold text-uppercase mb-1">DPA</div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
                 <span><h2>{{ $kegiatans }}</h2></span>

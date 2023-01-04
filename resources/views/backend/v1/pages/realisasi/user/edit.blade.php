@@ -16,8 +16,10 @@
                 <div class="card-body bg-info">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs text-light font-weight-bold text-uppercase mb-1">Tanggal {{ date('d M Y') }},
-                                Triwulan ke-{{ $realisasi->triwulan }}</div>
+                            <div class="text-xs text-light font-weight-bold text-uppercase mb-1">
+                                <h6>Tanggal {{ date('d M Y') }},
+                                    Triwulan ke-{{ $realisasi->triwulan }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,7 +113,7 @@
     </div>
     <div class="card mb-3">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Realisasi</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Realisasi Pertriwulan</h6>
             {{-- <a href="{{ route('program.index') }}" class="btn btn-primary mt-4">Data Mahasiswa</a> --}}
         </div>
         <div class="card-body">
@@ -150,7 +152,7 @@
                         <div class="form-group">
                             <label for="satuan">Satuan</label>
                             <input type="text" class="form-control" name="satuan" id="satuan"
-                                value="{{ $realisasi->satuan }}"required>
+                                value="{{ $realisasi->satuan }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
