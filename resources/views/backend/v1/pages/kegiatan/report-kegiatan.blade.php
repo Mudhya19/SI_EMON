@@ -57,8 +57,8 @@
                 <th>Nama Kegiatan</th>
                 <th>Indikator</th>
                 <th>Target</th>
-                <th>Pagu</th>
                 <th>Satuan</th>
+                <th>Pagu</th>
                 <th>Penanggung jawab</th>
             </tr>
             @foreach ($kegiatans as $kegiatan)
