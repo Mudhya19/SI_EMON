@@ -5,7 +5,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link href="img/logo/diskominfo.png" rel="icon">
-        <title>SI-EMON</title>
+        <title>SI-MONTOK</title>
         <link href="{{ url('templates/backend') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
             type="text/css">
         <link href="{{ url('templates/backend') }}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"

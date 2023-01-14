@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
             <img src="{{ url('templates/backend') }}/img/diskominfo.png">
         </div>
-        <div class="sidebar-brand-text mx-4">SI-EMON</div>
+        <div class="sidebar-brand-text mx-4">SI-MONTOK</div>
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
