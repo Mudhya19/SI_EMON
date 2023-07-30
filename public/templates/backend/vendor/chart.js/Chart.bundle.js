@@ -3475,7 +3475,7 @@ var element_line = core_element.extend({
 		var me = this;
 		var vm = me._view;
 		var ctx = me._chart.ctx;
-		var spanGaps = vm.spanGaps;
+		var spanTindakLanjuts = vm.spanTindakLanjuts;
 		var points = me._children.slice(); // clone array
 		var globalDefaults = core_defaults.global;
 		var globalOptionLineElements = globalDefaults.elements.line;
@@ -3521,8 +3521,8 @@ var element_line = core_element.extend({
 				previous = lastDrawnIndex === -1 ? previous : points[lastDrawnIndex];
 
 				if (!currentVM.skip) {
-					if ((lastDrawnIndex !== (index - 1) && !spanGaps) || lastDrawnIndex === -1) {
-						// There was a gap and this is the first point after the gap
+					if ((lastDrawnIndex !== (index - 1) && !spanTindakLanjuts) || lastDrawnIndex === -1) {
+						// There was a TindakLanjut and this is the first point after the TindakLanjut
 						ctx.moveTo(currentVM.x, currentVM.y);
 					} else {
 						// Line to next point
@@ -3917,7 +3917,7 @@ function computeFitCategoryTraits(index, ruler, options) {
 }
 
 /**
- * Computes an "optimal" category that globally arranges bars side by side (no gap when
+ * Computes an "optimal" category that globally arranges bars side by side (no TindakLanjut when
  * percentage options are 1), based on the previous and following categories. This mode
  * generates bars with different widths when data are not evenly spaced.
  * @private
@@ -4883,7 +4883,7 @@ var isPointInArea = helpers$1.canvas._isPointInArea;
 
 core_defaults._set('line', {
 	showLines: true,
-	spanGaps: false,
+	spanTindakLanjuts: false,
 
 	hover: {
 		mode: 'label'
@@ -5081,8 +5081,8 @@ var controller_line = core_datasetController.extend({
 
 		// The default behavior of lines is to break at null values, according
 		// to https://github.com/chartjs/Chart.js/issues/2435#issuecomment-216718158
-		// This option gives lines the ability to span gaps
-		values.spanGaps = valueOrDefault$5(dataset.spanGaps, options.spanGaps);
+		// This option gives lines the ability to span TindakLanjuts
+		values.spanTindakLanjuts = valueOrDefault$5(dataset.spanTindakLanjuts, options.spanTindakLanjuts);
 		values.tension = valueOrDefault$5(dataset.lineTension, elementOptions.tension);
 		values.steppedLine = resolve$4([custom.steppedLine, dataset.steppedLine, elementOptions.stepped]);
 
@@ -5131,8 +5131,8 @@ var controller_line = core_datasetController.extend({
 		var points = meta.data || [];
 		var i, ilen, model, controlPoints;
 
-		// Only consider points that are drawn in case the spanGaps option is used
-		if (lineModel.spanGaps) {
+		// Only consider points that are drawn in case the spanTindakLanjuts option is used
+		if (lineModel.spanTindakLanjuts) {
 			points = points.filter(function(pt) {
 				return !pt._model.skip;
 			});
@@ -18195,7 +18195,7 @@ function drawArea(ctx, curve0, curve1, len0, len1) {
 
 function doFill(ctx, points, mapper, view, color, loop) {
 	var count = points.length;
-	var span = view.spanGaps;
+	var span = view.spanTindakLanjuts;
 	var curve0 = [];
 	var curve1 = [];
 	var len0 = 0;

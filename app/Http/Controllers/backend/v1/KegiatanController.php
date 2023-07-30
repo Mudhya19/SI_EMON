@@ -16,17 +16,28 @@ class KegiatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['kegiatans'] = Kegiatan::all();
+        $tahun = $request->query('tahun');
+        if (is_null($tahun)) {
+            $data['kegiatans'] = Kegiatan::all();
+            $data['employees'] = User::where('rule','user')->where('jabatan', '!=', 'Kepala Diskominfo')->get();
+        } else {
+            $data['kegiatans'] = Kegiatan::whereHas('program', function ($query) use ($tahun) {
+                return $query->where('tahun', $tahun);
+            })->get();
+        }
+        $data['tahuns'] = Program::select('tahun')->orderBy('tahun', 'ASC')->distinct()->get();
         return view('backend.v1.pages.kegiatan.index', $data);
+        // $data['kegiatans'] = Kegiatan::all();
+        // return view('backend.v1.pages.kegiatan.index', $data);
     }
 
-    public function cetakKegiatan()
-    {
-        $data['kegiatans'] = Kegiatan::all();
-        return view('backend.v1.pages.kegiatan.report-kegiatan', $data);
-    }
+    // public function cetakKegiatan()
+    // {
+    //     $data['kegiatans'] = Kegiatan::all();
+    //     return view('backend.v1.pages.kegiatan.report-kegiatan', $data);
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +47,7 @@ class KegiatanController extends Controller
     {
 
         $data['programs'] = Program::all();
-        $data['users'] = User::where('rule', '=', 'user' )->get();
+        $data['users'] = User::where('rule', '=', 'user')->where('jabatan', '!=', 'Kepala Diskominfo')->get();
         return view('backend.v1.pages.kegiatan.create', $data);
     }
 
@@ -54,7 +65,6 @@ class KegiatanController extends Controller
             'indikator' => 'required',
             'target' => 'required',
             'satuan' => 'required',
-            'pagu' => 'required',
             'user_id' => 'required',
         ]);
 
@@ -94,7 +104,7 @@ class KegiatanController extends Controller
     {
         $data['kegiatan'] = $kegiatan;
         $data['programs'] = Program::all();
-        $data['users'] = User::where('rule', '=', 'user' )->get();
+        $data['users'] = User::where('rule', '=', 'user' )->where('jabatan', '!=', 'Kepala Diskominfo')->get();
         return view('backend.v1.pages.kegiatan.edit', $data);
     }
 
@@ -113,7 +123,6 @@ class KegiatanController extends Controller
             'indikator' => 'required',
             'target' =>'required',
             'satuan' => 'required',
-            'pagu' => 'required',
             'user_id' => 'required',
         ]);
 
@@ -122,7 +131,7 @@ class KegiatanController extends Controller
         $data['terserap'] = $data['program']->kegiatan->where('id', '!=', $kegiatan->id)->sum('pagu');
         $data['sisa'] = $data['pagu'] - $data['terserap'];
 
-        // bila pagu yang di input melebihi sisa pagu program maka dianggap gagal
+        // bila pagu yang di input melebihi sisa pagu program maka diangTindakLanjut gagal
         // if ($request->pagu > $data['sisa']) {
         //     return to_route('kegiatan.edit', $kegiatan->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Program');
         // }

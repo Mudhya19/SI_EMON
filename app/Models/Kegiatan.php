@@ -24,4 +24,8 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Realisasi::class);
     }
+
+    public function subkegiatan(){
+        return $this->hasMany(Subkegiatan::class);
+    }
 }

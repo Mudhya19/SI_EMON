@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('indikator');
             $table->string('target');
             $table->string('satuan');
-            $table->string('pagu');
+            $table->string('kendala')->nullable();
+            $table->string('solusi')->nullable();
+            $table->string('tindak_lanjut')->nullable();
             $table->timestamps();
         });
     }

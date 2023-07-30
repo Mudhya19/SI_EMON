@@ -75,12 +75,6 @@
                             <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6"></textarea>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="pagu">Pagu</label>
-                            <input type="text" class="form-control" name="pagu" id="pagu" required>
-                        </div>
-                    </div>
                 </div>
                 <input type="submit" name="submit" class="btn btn-success" value="Simpan">
                 <a href="{{ route('kegiatan.index') }}" class="btn btn-warning">Kembali</a>

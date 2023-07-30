@@ -9,6 +9,21 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">List Realisasi Pertriwulan PPTK</h6>
                 </div>
+                <div class="col-md-5">
+                    <form action="{{ route('realisasi.index') }}" method="GET">
+                        @csrf
+                        <select class="select-single-placeholder form-control" name="tahun" id="selectSinglePlaceholder"
+                            required>
+                            <option value="">Pilih Realisasi Pertriwulan PPTK Pertahun
+                            </option>
+                            @foreach ($tahuns as $tahun)
+                                <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <input type="submit" name="submit" class="btn btn-success" value="Filter">
+                    </form>
+                </div>
                 <div class="accordion" id="accordionExample">
                     @foreach ($employees as $employee)
                         <div class="card">
@@ -28,11 +43,14 @@
                                 aria-labelledby="employeeHeading{{ $loop->iteration }}" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="table-responsive p-3">
-                                        <table class="table align-items-center table-hover display" id="">
+                                        <div class="row">
+                                        </div>
+                                        <table class="table align-items-center table-hover display table-striped"
+                                            id="">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kegiatan</th>
+                                                    <th>Nama Kegiatan</th>
                                                     <th>Tanggal</th>
                                                     <th>Triwulan</th>
                                                     <th>Realisasi Keuangan</th>
@@ -43,7 +61,7 @@
                                             </thead>
                                             <tfoot>
                                                 <th>No</th>
-                                                <th>Kegiatan</th>
+                                                <th>Nama kegiatan</th>
                                                 <th>Tanggal</th>
                                                 <th>Triwulan</th>
                                                 <th>Realisasi Keuangan</th>
@@ -59,7 +77,7 @@
                                                     @foreach ($kegiatan->realisasi as $realisasi)
                                                         <tr>
                                                             <td>{{ $no_realisasi++ }}.</td>
-                                                            <td>{{ $realisasi->nama }}</td>
+                                                            <td>{{ $realisasi->kegiatan->nama }}</td>
                                                             <td>{{ $realisasi->tanggal }}</td>
                                                             <td>{{ $realisasi->triwulan }}</td>
                                                             <td>@currency($realisasi->pagu)</td>
@@ -103,19 +121,19 @@
                                                 @endphp
                                                 @foreach ($employee->kegiatan as $kegiatan)
                                                     <tr>
-                                                        <td>{{ $no_kegiatan }}.</td>
+                                                        <td>{{ $no_kegiatan++ }}.</td>
                                                         <td>{{ $kegiatan->nama }}</td>
-                                                        <td>@currency($kegiatan->pagu)</td>
+                                                        <td>@currency($kegiatan->subkegiatan->sum('pagu'))</td>
                                                         <td>@currency($kegiatan->realisasi->sum('pagu'))</td>
                                                         <td>{{ $kegiatan->target }}</td>
                                                         <td>{{ $kegiatan->satuan }}</td>
-                                                        @if ($kegiatan->pagu > $kegiatan->realisasi->sum('pagu'))
+                                                        @if ($kegiatan->subkegiatan->sum('pagu') > $kegiatan->realisasi->sum('pagu'))
                                                             <td><a class="btn btn-warning" href="#"
                                                                     role="button">Proses penyerapan</a></td>
-                                                        @elseif($kegiatan->pagu == $kegiatan->realisasi->sum('pagu'))
+                                                        @elseif($kegiatan->subkegiatan->sum('pagu') == $kegiatan->realisasi->sum('pagu'))
                                                             <td><a class="btn btn-success" href="#"
                                                                     role="button">selesai Penyerapan</a></td>
-                                                        @elseif ($kegiatan->pagu < $kegiatan->realisasi->sum('pagu'))
+                                                        @elseif ($kegiatan->subkegiatan->sum('pagu') < $kegiatan->realisasi->sum('pagu'))
                                                             <td><a class="btn btn-danger" href="#"
                                                                     role="button">Melebih Penyerapan</a></td>
                                                         @endif

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\backend\v1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Program;
 use App\Models\Kegiatan;
+use App\Models\Subkegiatan;
 use App\Models\Realisasi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,17 +18,66 @@ class RealisasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (Auth::user()->rule == 'admin'){
-            $data['employees'] = User::where('rule','user')->get();
+        $tahun = $request->query('tahun');
+        $data['tahuns'] = Program::select('tahun')->orderBy('tahun', 'ASC')->distinct()->get();
+
+        if (Auth::user()->rule == 'admin') {
+            if (is_null($tahun)) {
+                $data['employees'] = User::where('rule', 'user')->where('jabatan', '!=', 'Kepala Diskominfo')->get();
+            } else {
+                $data['employees'] = User::whereHas('kegiatan.program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->get();
+            }
             return view('backend.v1.pages.realisasi.admin.index', $data);
         } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->get();
-            $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
-            $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
-            $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
+            if (is_null($tahun)) {
+                $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+                $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->whereHas('kegiatan', function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->whereHas('kegiatan', function
+                ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->whereHas('kegiatan', function
+                ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->whereHas('kegiatan', function
+                ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+            } else {
+                $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->whereHas('program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->get();
+                $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->whereHas('kegiatan.program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->whereHas('kegiatan', function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->whereHas('kegiatan.program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->whereHas('kegiatan', function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->whereHas('kegiatan.program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->whereHas('kegiatan', function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+                $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->whereHas('kegiatan.program', function ($query) use ($tahun) {
+                    return $query->where('tahun', $tahun);
+                })->whereHas('kegiatan', function ($query) {
+                    return $query->where('user_id', '=', Auth::user()->id);
+                })->get();
+            }
+            // $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
+            // $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
+            // $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
             return view('backend.v1.pages.realisasi.user.index', $data);
         }
     }
@@ -37,73 +88,74 @@ class RealisasiController extends Controller
         return view('backend.v1.pages.realisasi.user.realisasi-kegiatan', $data);
     }
 
-    public function cetakRealisasi()
-    {
-        $data['realisasis'] = Realisasi::all();
-        if (Auth::user()->rule == 'admin'){
-            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
-        } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            return view('backend.v1.pages.realisasi.user.report-realisasi', $data);
-        }
-    }
+    // public function cetakRealisasi()
+    // {
+    //     $data['realisasis'] = Realisasi::all();
+    //     if (Auth::user()->rule == 'admin'){
+    //         return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+    //     } else {
+    //         $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+    //         return view('backend.v1.pages.realisasi.user.report-realisasi', $data);
+    //     }
+    // }
 
-    public function cetakRealisasiAdmin()
-    {
-        $data['kegiatans'] = Kegiatan::all();
-        if (Auth::user()->rule == 'admin'){
+    // public function cetakRealisasiAdmin()
+    // {
+    //     $data['kegiatans'] = Kegiatan::all();
+    //     if (Auth::user()->rule == 'admin'){
 
-            return view('backend.v1.pages.realisasi.admin.report', $data);
-        }
-    }
+    //         return view('backend.v1.pages.realisasi.admin.report', $data);
+    //     }
+    // }
 
-    public function cetakTriwulanI()
-    {
-            $data['realisasis'] = Realisasi::all();
-        if (Auth::user()->rule == 'admin'){
-            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
-        } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->get();
-            return view('backend.v1.pages.realisasi.user.report-triwulanI', $data);
-        }
-    }
 
-    public function cetakTriwulanII()
-    {
-            $data['realisasis'] = Realisasi::all();
-        if (Auth::user()->rule == 'admin'){
-            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
-        } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
-            return view('backend.v1.pages.realisasi.user.report-triwulanII', $data);
-        }
-    }
+    // public function cetakTriwulanI()
+    // {
+    //         $data['realisasis'] = Realisasi::all();
+    //     if (Auth::user()->rule == 'admin'){
+    //         return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+    //     } else {
+    //         $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+    //         $data['triwulan_I'] = Realisasi::where('triwulan', '=', 'I')->get();
+    //         return view('backend.v1.pages.realisasi.user.report-triwulanI', $data);
+    //     }
+    // }
 
-    public function cetakTriwulanIII()
-    {
-            $data['realisasis'] = Realisasi::all();
-        if (Auth::user()->rule == 'admin'){
-            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
-        } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
-            return view('backend.v1.pages.realisasi.user.report-triwulanIII', $data);
-        }
-    }
+    // public function cetakTriwulanII()
+    // {
+    //         $data['realisasis'] = Realisasi::all();
+    //     if (Auth::user()->rule == 'admin'){
+    //         return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+    //     } else {
+    //         $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+    //         $data['triwulan_II'] = Realisasi::where('triwulan', '=', 'II')->get();
+    //         return view('backend.v1.pages.realisasi.user.report-triwulanII', $data);
+    //     }
+    // }
 
-    public function cetakTriwulanIV()
-    {
-            $data['realisasis'] = Realisasi::all();
-        if (Auth::user()->rule == 'admin'){
-            return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
-        } else {
-            $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
-            $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
-            return view('backend.v1.pages.realisasi.user.report-triwulanIV', $data);
-        }
-    }
+    // public function cetakTriwulanIII()
+    // {
+    //         $data['realisasis'] = Realisasi::all();
+    //     if (Auth::user()->rule == 'admin'){
+    //         return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+    //     } else {
+    //         $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+    //         $data['triwulan_III'] = Realisasi::where('triwulan', '=', 'III')->get();
+    //         return view('backend.v1.pages.realisasi.user.report-triwulanIII', $data);
+    //     }
+    // }
+
+    // public function cetakTriwulanIV()
+    // {
+    //         $data['realisasis'] = Realisasi::all();
+    //     if (Auth::user()->rule == 'admin'){
+    //         return view('backend.v1.pages.realisasi.admin.report-realisasi', $data);
+    //     } else {
+    //         $data['kegiatans'] = Kegiatan::where('user_id', '=', Auth::user()->id)->get();
+    //         $data['triwulan_IV'] = Realisasi::where('triwulan', '=', 'IV')->get();
+    //         return view('backend.v1.pages.realisasi.user.report-triwulanIV', $data);
+    //     }
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -113,11 +165,11 @@ class RealisasiController extends Controller
     public function create(Request $request)
     {
 
-        if (Auth::user()->rule == 'user'){
+        if (Auth::user()->rule == 'user') {
             $month = date('m');
             $data['triwulan'] = 0;
 
-            if ($month < 4 ){
+            if ($month < 4) {
                 $data['triwulan'] = 1;
             } elseif ($month < 7) {
                 $data['triwulan'] = 2;
@@ -128,7 +180,8 @@ class RealisasiController extends Controller
             }
 
             $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
-            $data['pagu'] = $data['kegiatan']->pagu;
+            // dd($data['pagu'] = $data['kegiatan']);
+            $data['pagu'] = $data['kegiatan']->subkegiatan->sum('pagu');
             $data['target'] = $data['kegiatan']->target;
             $data['satuan'] = $data['kegiatan']->satuan;
             $data['terserap'] = $data['kegiatan']->realisasi->sum('pagu');
@@ -147,7 +200,6 @@ class RealisasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
             'tanggal' => 'required',
             'triwulan' => 'required',
             'target' => 'required',
@@ -157,11 +209,11 @@ class RealisasiController extends Controller
         ]);
 
         $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
-        $data['pagu'] = $data['kegiatan']->pagu;
+        $data['pagu'] = $data['kegiatan']->subkegiatan->sum('pagu');
         $data['terserap'] = $data['kegiatan']->realisasi->sum('pagu');
         $data['sisa'] = $data['pagu'] - $data['terserap'];
 
-        // bila pagu yang di input melebihi sisa pagu kegiatan maka dianggap gagal
+        // bila pagu yang di input melebihi sisa pagu kegiatan maka diangTindakLanjut gagal
         // if ($request->pagu > $data['sisa']) {
         //     return to_route('realisasi.create', ['kegiatan_id' => $request->kegiatan_id])->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
         // }
@@ -207,7 +259,6 @@ class RealisasiController extends Controller
     public function update(Request $request, Realisasi $realisasi)
     {
         $request->validate([
-            'nama' => 'required',
             'tanggal' => 'required',
             'triwulan' => 'required',
             'target' => 'required',
@@ -217,11 +268,11 @@ class RealisasiController extends Controller
         ]);
 
         $data['kegiatan'] = Kegiatan::where('id', $request->kegiatan_id)->first();
-        $data['pagu'] = $data['kegiatan']->pagu;
+        $data['pagu'] = $data['kegiatan']->subkegiatan->sum('pagu');
         $data['terserap'] = $data['kegiatan']->realisasi->where('id', '!=', $realisasi->id)->sum('pagu');
         $data['sisa'] = $data['pagu'] - $data['terserap'];
 
-        // bila pagu yang di input melebihi sisa pagu kegiatan maka dianggap gagal
+        // bila pagu yang di input melebihi sisa pagu kegiatan maka diangTindakLanjut gagal
         // if ($request->pagu > $data['sisa']) {
         //     return to_route('realisasi.edit', $realisasi->id)->with('failed', 'Pagu Yang Dimasukkan melebihi Batas Anggaran Kegiatan');
         // }
@@ -247,9 +298,8 @@ class RealisasiController extends Controller
 
     public function boot()
     {
-        Blade::directive('currency', function ($value)
-        {
+        Blade::directive('currency', function ($value) {
             return "Rp. <?php echo number_format($value, 0, ',', '.');?>";
-        });
-    }
+});
+}
 }

@@ -23,6 +23,10 @@ return new class extends Migration
             $table->string('target');
             $table->string('satuan');
             $table->string('pagu');
+            // contoh membuat kolom tidak wajib diisi
+            $table->string('kendala')->nullable();
+            $table->string('solusi')->nullable();
+            $table->string('tindak_lanjut')->nullable();
             $table->timestamps();
         });
     }

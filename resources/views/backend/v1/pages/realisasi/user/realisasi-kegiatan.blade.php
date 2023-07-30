@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="card">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Pilih Kegiatan</h6>
+    </div>
     <div class="card-body">
         @foreach ($kegiatans as $kegiatan)
         <a href="{{ route('realisasi.create', ['kegiatan_id' => $kegiatan->id]) }}"

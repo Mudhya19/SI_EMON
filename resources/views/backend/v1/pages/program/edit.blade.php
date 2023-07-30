@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="tahun">Tahun</label>
+                            <label for="tahun">Tahun anggaran</label>
                             <input type="text" class="form-control" name="tahun" id="tahun"
                                 value="{{ $program->tahun }}" required>
                         </div>

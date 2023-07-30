@@ -9,12 +9,29 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Realisasi Pertriwulan</h6>
                 </div>
                 <div class="table-responsive p-3">
-                    @if (count(Auth::user()->kegiatan) != 0)
-                        <a href="{{ route('realisasi.realisasi-kegiatan') }}" class="btn btn-primary btn-add text-white mb-3">
-                            <i class="fas fa-plus fa-sm"></i>Tambah Realisasi Pertriwulan
-                        </a>
-                        <a href="{{ route('report-realisasi') }}" target="blank" method="POST"
-                            class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a>
+                    <div class='row'>
+                        @if (count(Auth::user()->kegiatan) != 0)
+                            <div class="col-md-2">
+                                <a href="{{ route('realisasi.realisasi-kegiatan') }}" method="POST" class="btn btn-primary mb-3"><i
+                                        class="fas fa-fw fa-plus"></i>Tambah Realisasi</a>
+                            </div>
+                            <div class="col-md-4">
+                                <form action="{{ route('realisasi.index') }}" method="GET">
+                                    @csrf
+                                    <select class="select-single-placeholder form-control" name="tahun"
+                                        id="selectSinglePlaceholder" required>
+                                        <option value="">Pilih Realisasi Pertriwulan Pertahun</option>
+                                        @foreach ($tahuns as $tahun)
+                                            <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <input type="submit" name="submit" class="btn btn-success" value="Filter">
+                                </form>
+                            </div>
+                    </div>
+                    {{-- <a href="{{ route('report-realisasi') }}" target="blank" method="POST"
+                            class="btn btn-success mb-3"><i class="fas fa-fw fa-print"></i>Cetak Data</a> --}}
                     @endif
                     @foreach ($kegiatans as $kegiatan)
                         {{-- ini header kegiatan --}}

@@ -25,8 +25,8 @@
                         required>
                         <option value="">---Pilih satu ID Program---</option>
                         @foreach ($programs as $program)
-                            <option value="{{ $program->id }}"
-                                {{ $kegiatan->program_id == $program->id ? 'selected' : '' }}>
+                            <option
+                                value="{{ $program->id }}"{{ $kegiatan->program_id == $program->id ? 'selected' : '' }}>
                                 {{ $program->kode . ' - ' . $program->nama }}</option>
                         @endforeach
                     </select>
@@ -82,13 +82,6 @@
                         <div class="form-group">
                             <label for="indikator">Indikator</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6" required>{{ $kegiatan->indikator }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="pagu">Pagu</label>
-                            <input type="text" class="form-control" name="pagu" id="pagu"
-                                value="{{ $kegiatan->pagu }}" required>
                         </div>
                     </div>
                 </div>

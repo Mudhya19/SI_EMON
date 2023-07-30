@@ -136,13 +136,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="nama">Nama Realisasi</label>
-                            <input type="text" class="form-control" name="nama" id="nama"
-                                value="{{ $realisasi->nama }}" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label for="target">Target</label>
                             <input type="text" class="form-control" name="target" id="target"
                                 value="{{ $realisasi->target }}"required>
@@ -162,7 +155,7 @@
                                 value="{{ $realisasi->pagu }}" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <textarea type="text" class="form-control" id="exampleFormControlTextarea1" name="keterangan" rows="6">{{ $realisasi->keterangan }}</textarea>

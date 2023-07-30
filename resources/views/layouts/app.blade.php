@@ -15,6 +15,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        @stack('css')
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -32,6 +33,7 @@
             @endif
 
             <!-- Page Content -->
+            @yield('content')
             <main>
                 {{ $slot }}
             </main>
@@ -40,5 +42,6 @@
         @stack('modals')
 
         @livewireScripts
+        @stack('js')
     </body>
 </html>

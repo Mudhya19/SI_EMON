@@ -14,18 +14,22 @@ class ProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['programs'] = Program::all();
+        if (is_null($request->query('tahun'))) {
+            $data['programs'] = Program::all();
+        } else {
+            $data['programs'] = Program::where(['tahun' => $request['tahun']])->get();
+        }
+        $data['tahuns'] = Program::select('tahun')->orderBy('tahun', 'ASC')->distinct()->get();
         return view('backend.v1.pages.program.index', $data);
-            
     }
 
     public function cetakProgram()
     {
         $data['programs'] = Program::all();
         return view('backend.v1.pages.program.report-program', $data);
-            
+
     }
     /**
      * Show the form for creating a new resource.
@@ -55,11 +59,11 @@ class ProgramController extends Controller
             'satuan' => 'required',
             'pagu' => 'required',
         ]);
-        
+
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
         Program::create($data);
-        
+
         return redirect()->route('program.index')->with('success', 'Data program berhasil ditambahkan.');
     }
 
@@ -71,7 +75,7 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        
+
     }
 
     /**
@@ -107,7 +111,7 @@ class ProgramController extends Controller
 
         $data = $request->all();
         $program->update($data);
-        
+
         return to_route('program.index')->with('success', ' Data program berhasil di perbarui');
     }
 

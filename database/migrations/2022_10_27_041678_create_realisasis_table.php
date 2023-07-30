@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('realisasis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kegiatan_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('nama');
             $table->date('tanggal');
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
             $table->string('target');
