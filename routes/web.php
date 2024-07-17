@@ -42,10 +42,10 @@ Route::middleware([
     // Route::resource('report', ReportController::class);
     Route::get('/tindaklanjut/{program}/editProgram', [TindakLanjutController::class, 'editProgram'])->name('tindaklanjut.editProgram');
     Route::get('/tindaklanjut/{kegiatan}/editKegiatan', [TindakLanjutController::class, 'editKegiatan'])->name('tindaklanjut.editKegiatan');
-    Route::match(['put', 'patch'], 'tindaklanjut/updateProgram/{updateProgram:id}', [TindakLanjutController::class,
-    'updateProgram'])->name('tindaklanjut.updateProgram');
-    Route::match(['put', 'patch'], 'tindaklanjut/updateKegiatan/{updateKegiatan:id}', [TindakLanjutController::class,
-    'updateKegiatan'])->name('tindaklanjut.updateKegiatan');
+    Route::match(['put', 'patch'], 'tindaklanjut/verifikasiProgram/{program:id}', [TindakLanjutController::class,
+    'verifikasiProgram'])->name('tindaklanjut.verifikasiProgram');
+    Route::match(['put', 'patch'], 'tindaklanjut/verifikasiKegiatan/{kegiatan:id}', [TindakLanjutController::class,
+    'verifikasiKegiatan'])->name('tindaklanjut.verifikasiKegiatan');
     Route::get('laporan', [ReportController::class, 'index'])->name('laporan.index');
     Route::get('print', [ReportController::class, 'print'])->name('laporan.print');
     Route::get('realisasi-kegiatan', [RealisasiController::class, 'pilihKegiatan'])->name('realisasi.realisasi-kegiatan');

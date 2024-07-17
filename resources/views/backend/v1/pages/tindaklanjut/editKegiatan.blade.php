@@ -16,7 +16,7 @@
             {{-- <a href="{{ route('program.index') }}" class="btn btn-primary mt-4">Data Mahasiswa</a> --}}
         </div>
         <div class="card-body">
-            <form action="{{ route('tindaklanjut.updateKegiatan', $kegiatan) }}" method="POST">
+            <form action="{{ route('tindaklanjut.verifikasiKegiatan', $kegiatan->id) }}" method="POST">
                 @csrf
                 @method('patch')
                 <div class="row">
@@ -58,24 +58,40 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="indikator" rows="6" readonly required>{{ $kegiatan->indikator }} </textarea>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="kendala">Kendala</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="kendala" rows="6">{{ $kegiatan->kendala }} </textarea>
+                    @if (Auth::user()->jabatan !== 'Kepala Diskominfo')
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="kendala">Kendala</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="kendala" rows="6">{{ $kegiatan->kendala }} </textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="solusi">Solusi</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="solusi" rows="6">{{ $kegiatan->solusi }} </textarea>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="solusi">Solusi</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="solusi" rows="6">{{ $kegiatan->solusi }} </textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="tindak_lanjut">Tindak Lanjut</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="tindak_lanjut" rows="6">{{ $kegiatan->tindak_lanjut }} </textarea>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tindak_lanjut">Tindak Lanjut</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="tindak_lanjut" rows="6">{{ $kegiatan->tindak_lanjut }} </textarea>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+                    @if (Auth::user()->jabatan == 'Kepala Diskominfo')
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="selectSinglePlaceholder">Pilih persetujuan</label>
+                                <select class="select-single-placeholder form-control" name="verifikasi"
+                                    id="selectSinglePlaceholder" required>
+                                    <option value="0" {{ $kegiatan->verifikasi === 0 ? 'selected' : '' }}>Ditolak
+                                    </option>
+                                    <option value="1" {{ $kegiatan->verifikasi === 1 ? 'selected' : '' }}>Setuju
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <input type="submit" name="submit" class="btn btn-success" value="Simpan">
                 <a href="{{ route('tindaklanjut.index') }}" class="btn btn-warning">Kembali</a>

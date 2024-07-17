@@ -25,12 +25,14 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>DPA</span></a>
         </li>
+        @if (Auth::user()->rule == 'admin')
         <li
             class="nav-item {{ in_array(Route::currentRouteName(), ['tindaklanjut.index', 'tindaklanjut.editProgram', 'tindaklanjut.editKegiatan']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('tindaklanjut.index') }}">
                 <i class="fas fa-fw fa-chart-bar"></i>
                 <span>MONEV</span></a>
         </li>
+        @endif
         {{-- <li
             class="nav-item {{ in_array(Route::currentRouteName(), ['user.index', 'user.create', 'user.edit']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('user.index') }}">
@@ -83,6 +85,14 @@
             @endif
         </a>
     </li>
+    @if (Auth::user()->jabatan == 'Kepala Diskominfo')
+        <li
+            class="nav-item {{ in_array(Route::currentRouteName(), ['tindaklanjut.index', 'tindaklanjut.editProgram', 'tindaklanjut.editKegiatan']) ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('tindaklanjut.index') }}">
+                <i class="fas fa-fw fa-chart-bar"></i>
+                <span>MONEV</span></a>
+        </li>
+        @endif
     <li class="nav-item ">
         <a class="nav-link" href="{{ route('laporan.index') }}" method="POST">
             <i class="fas fa-fw fa-print"></i>

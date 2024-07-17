@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('kendala')->nullable();
             $table->string('solusi')->nullable();
             $table->string('tindak_lanjut')->nullable();
+            $table->enum('verifikasi', ['0', '1'])->nullable();
             $table->timestamps();
         });
     }

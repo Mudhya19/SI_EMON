@@ -20,7 +20,8 @@ class TindakLanjutController extends Controller
         if (is_null($tahun)) {
         $data['programs'] = Program::all();
         } else {
-        $data['programs'] = Program::where('tahun', $tahun)->get();;
+        $data['programs'] = Program::where('tahun', $tahun)->get();
+        // $data['users'] = User::where('jabatan', 'Kepala Diskominfo' )->fisrt();
         }
         $data['tahuns'] = Program::select('tahun')->orderBy('tahun', 'ASC')->distinct()->get();
         return view('backend.v1.pages.tindaklanjut.index', $data);
@@ -35,6 +36,7 @@ class TindakLanjutController extends Controller
     public function editProgram(Program $program)
     {
         $data['program'] = $program;
+        // $data['users'] = User::where('rule', 'user' )->where('jabatan', 'Kepala Diskominfo')->first();
 
         return view('backend.v1.pages.tindaklanjut.editProgram', $data);
     }
@@ -49,6 +51,7 @@ class TindakLanjutController extends Controller
     {
         $data['kegiatan'] = $kegiatan;
         $data['programs'] = Program::all();
+        // $data['users'] = User::where('rule', 'user' )->where('jabatan', 'Kepala Diskominfo')->first();
 
         return view('backend.v1.pages.tindaklanjut.editKegiatan', $data);
     }
@@ -60,18 +63,11 @@ class TindakLanjutController extends Controller
         * @param \App\Models\Program $program
         * @return \Illuminate\Http\Response
         */
-    public function updateProgram(Request $request, Program $updateProgram)
+    public function updateProgram(Request $request, Program $program)
     {
-        $request->validate([
-        'kode' => 'required',
-        'nama' => 'required',
-        'indikator' => 'required',
-        'target' => 'required',
-        'satuan' => 'required'
-        ]);
 
         $data = $request->all();
-        $updateProgram->update($data);
+        $program->update($data);
 
         return to_route('tindaklanjut.index')->with('success', ' Data program berhasil di perbarui');
     }
@@ -83,20 +79,27 @@ class TindakLanjutController extends Controller
         * @param \App\Models\Kegiatan $kegiatan
         * @return \Illuminate\Http\Response
         */
-    public function updateKegiatan(Request $request, Kegiatan $updateKegiatan)
+    public function updateKegiatan(Request $request, Kegiatan $kegiatan)
     {
-        $request->validate([
-        'kode' => 'required',
-        'nama' => 'required',
-        'indikator' => 'required',
-        'target' => 'required',
-        'satuan' => 'required'
-        ]);
 
     $data = $request->all();
-    $updateKegiatan->update($data);
+    $kegiatan->update($data);
 
     return to_route('tindaklanjut.index')->with('success', ' Data kegiatan berhasil di perbarui');
+    }
+
+    public function verifikasiProgram(Request $request, Program $program) {
+    $data = $request->all();
+    $program->update($data);
+
+    return to_route('tindaklanjut.index');
+    }
+
+    public function verifikasiKegiatan(Request $request, Kegiatan $kegiatan) {
+    $data = $request->all();
+    $kegiatan->update($data);
+
+    return to_route('tindaklanjut.index');
     }
 
     /**

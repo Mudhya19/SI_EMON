@@ -28,6 +28,9 @@
                     <br>
                     {{-- <a href="{{ route('report-kegiatan') }}" target="_blank" method="POST" class="btn btn-success mb-3"><i
                             class="fas fa-fw fa-print"></i>Cetak Data</a> --}}
+                    {{-- @if (Auth::user()->rule == 'admin')
+                    @elseif (Auth::user()->jabatan == 'Kepala Diskominfo')
+                    @endif --}}
                     <table class="table align-items-center table-hover table-striped" id="dataTableHover">
                         <thead class="thead-light">
                             <tr>
@@ -39,6 +42,7 @@
                                 <th>Kendala</th>
                                 <th>Solusi</th>
                                 <th>Tindak Lanjut</th>
+                                <th>Persetujuan pimpinan</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -51,6 +55,7 @@
                                 <th>Kendala</th>
                                 <th>Solusi</th>
                                 <th>Tindak Lanjut</th>
+                                <th>Persetujuan pimpinan</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -59,16 +64,46 @@
                                     <td>{{ $loop->iteration }}.</td>
                                     <td>{{ $program->kode . '-' . $program->nama }}</td>
                                     <td>{{ $program->indikator }}</td>
-                                    <td>{{ $program->target . '-' . $program->satuan }}</td>
+                                    <td>{{ $program->target . ' ' . $program->satuan }}</td>
+                                    {{-- @if (Auth::user()->jabatan == 'Kepala Diskominfo' || Auth::user()->jabatan == 'Admin') --}}
                                     <td>
-                                        <div class="btn-group">
-                                            <a href="{{ route('tindaklanjut.editProgram', $program->id) }}"
-                                                class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>
-                                        </div>
+                                        @if ($program->verifikasi != 1)
+                                            <div class="btn-group">
+                                                <a href="{{ route('tindaklanjut.editProgram', $program->id) }}"
+                                                    class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>
+                                            </div>
+                                        @endif
                                     </td>
+                                    {{-- @endif --}}
                                     <td>{{ $program->kendala }}</td>
                                     <td>{{ $program->solusi }}</td>
                                     <td>{{ $program->tindak_lanjut }}</td>
+                                    {{-- <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                ---Persetujuan Pimpinan---
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <button class="dropdown-item" type="button">Setuju</button>
+                                                <button class="dropdown-item" type="button">Ditolak</button>
+                                            </div>
+                                        </div>
+                                    </td> --}}
+                                    @if (Auth::user()->jabatan == 'Kepala Diskominfo' || Auth::user()->jabatan == 'Admin')
+                                        @if ($program->verifikasi === '0')
+                                            <td><a class="btn btn-sm text-white btn-danger" role="button">Ditolak</a>
+                                            </td>
+                                        @elseif($program->verifikasi === '1')
+                                            <td><a class="btn btn-sm text-white btn-success" role="button">Setuju</a>
+                                            </td>
+                                        @elseif(is_null($program->verifikasi))
+                                            <td><a class="btn btn-sm text-white btn-warning" role="button">Proses
+                                                    Persetujuan</a>
+                                            </td>
+                                        @endif
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -112,10 +147,13 @@
                                 <th>Kode Kegiatan</th>
                                 <th>Indikator</th>
                                 <th>Target dan satuan</th>
+                                {{-- @if (Auth::user()->jabatan !== 'Kepala Diskominfo') --}}
                                 <th>Aksi</th>
+                                {{-- @endif --}}
                                 <th>Kendala</th>
                                 <th>Solusi</th>
                                 <th>Tindak Lanjut</th>
+                                <th>Persetujuan pimpinan</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -124,10 +162,13 @@
                                 <th>Kode Kegiatan</th>
                                 <th>Indikator</th>
                                 <th>Target dan satuan</th>
+                                {{-- @if (Auth::user()->jabatan !== 'Kepala Diskominfo') --}}
                                 <th>Aksi</th>
+                                {{-- @endif --}}
                                 <th>Kendala</th>
                                 <th>Solusi</th>
                                 <th>Tindak Lanjut</th>
+                                <th>Persetujuan pimpinan</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -137,16 +178,34 @@
                                         <td>{{ $loop->iteration }}.</td>
                                         <td>{{ $kegiatan->kode . '-' . $kegiatan->nama }}</td>
                                         <td>{{ $kegiatan->indikator }}</td>
-                                        <td>{{ $kegiatan->target . '-' . $kegiatan->satuan }}</td>
+                                        <td>{{ $kegiatan->target . ' ' . $kegiatan->satuan }}</td>
+                                        {{-- @if (Auth::user()->jabatan !== 'Kepala Diskominfo') --}}
                                         <td>
-                                            <div class="btn-group">
-                                                <a href="{{ route('tindaklanjut.editKegiatan', $kegiatan->id) }}"
-                                                    class="btn btn-warning btn-sm"><i class="fas fa-fw fa-edit"></i>Edit</a>
-                                            </div>
+                                            @if ($kegiatan->verifikasi != 1)
+                                                <div class="btn-group">
+                                                    <a href="{{ route('tindaklanjut.editKegiatan', $kegiatan->id) }}"
+                                                        class="btn btn-warning btn-sm"><i
+                                                            class="fas fa-fw fa-edit"></i>Edit</a>
+                                                </div>
+                                            @endif
                                         </td>
+                                        {{-- @endif --}}
                                         <td>{{ $kegiatan->kendala }}</td>
                                         <td>{{ $kegiatan->solusi }}</td>
                                         <td>{{ $kegiatan->tindak_lanjut }}</td>
+                                        @if (Auth::user()->jabatan == 'Kepala Diskominfo' || Auth::user()->jabatan == 'Admin')
+                                            @if ($kegiatan->verifikasi === '0')
+                                                <td><a class="btn btn-sm text-white btn-danger" role="button">Ditolak</a>
+                                                </td>
+                                            @elseif($kegiatan->verifikasi === '1')
+                                                <td><a class="btn btn-sm text-white btn-success" role="button">Setuju</a>
+                                                </td>
+                                            @elseif(is_null($kegiatan->verifikasi))
+                                                <td><a class="btn btn-sm text-white btn-warning" role="button">Proses
+                                                        Persetujuan</a>
+                                                </td>
+                                            @endif
+                                        @endif
                                     </tr>
                                 @endforeach
                             @endforeach
